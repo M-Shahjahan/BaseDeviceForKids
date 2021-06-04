@@ -197,7 +197,7 @@ $this->title = 'Devices For Kids';
                             <?= $form->field($model,'address')->label('School Address',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'])->label('Connection To School',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'],['class'=>'cssradio BentonSansbold m-0'])->label('Connection To School',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
                             <?= $form->field($model,'contact')->label('Name Of Contact',['class'=>'color-white BentonSansbold']);?>
