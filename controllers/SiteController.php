@@ -146,8 +146,6 @@ class SiteController extends Controller
                     echo "Hy";
             }
             $EmailBody=$this->render('email',['model'=>$model]);
-            echo $EmailBody;
-            exit;
             $objEmailInfo                          = new EmailInfo();
             $objEmailInfo->_FromName               = "Device For Kids";
             $objEmailInfo->_FromEmailAddress       = "i150123@nu.edu.pk";
@@ -156,12 +154,10 @@ class SiteController extends Controller
             $objEmailInfo->_CCList                 = [" "];
             $objEmailInfo->_EmailBody              = $EmailBody;
             $response                              = SendEmail::sendMail($objEmailInfo);
-
         }
         $model=new NominationForm;
         return $this->render('nominationForm',['model'=>$model]);
     }
-
     public function actionEmail(){
         return $this->render('test');
     }
