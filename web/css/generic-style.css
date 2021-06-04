@@ -1,0 +1,194 @@
+body {
+  font-size: 100%;
+  box-sizing: border-box;
+}
+/* font family */
+.JamesStroker {
+  font-family: "james_strokerjames_stroker";
+}
+.BentonSansregular {
+  font-family: "bentonsans_regularregular";
+}
+.BentonSansbold {
+  font-family: "bentonsans_boldregular";
+}
+.BentonSansmedium {
+  font-family: "bentonsans_mediumregular";
+}
+.btn.focus,
+.btn:focus,
+.form-control:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none !important;
+}
+.display-inline {
+  display: inline-block;
+}
+/* font-size */
+.fs-12 {
+  font-size: 12px;
+}
+.fs-14 {
+  font-size: 14px;
+}
+.fs-16 {
+  font-size: 16px;
+}
+.fs-18 {
+  font-size: 18px;
+}
+.fs-20 {
+  font-size: 20px;
+}
+.fs-22 {
+  font-size: 22px;
+}
+.fs-24 {
+  font-size: 24px;
+}
+.fs-26 {
+  font-size: 26px;
+}
+.fs-28 {
+  font-size: 28px;
+}
+.fs-30 {
+  font-size: 30px;
+}
+.fs-36 {
+  font-size: 36px;
+}
+.fs-40 {
+  font-size: 40px;
+}
+.fs-50 {
+  font-size: 50px;
+}
+.fs-60 {
+  font-size: 60px;
+}
+.fs-80 {
+  font-size: 80px;
+}
+.fs-90 {
+  font-size: 90px;
+}
+/* font-weight */
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-700 {
+  font-weight: 700;
+}
+
+/* colors */
+.color-blue {
+  color: #092864;
+}
+.bg-color-blue {
+  background: #092864;
+}
+.color-pink {
+  color: #e00273;
+}
+.color-lightpink {
+  color: #ea8d90;
+}
+.color-black {
+  color: #2c2c2d;
+}
+.color-white {
+  color: #fff;
+}
+
+/* Mediaqueries css */
+
+@media (max-width: 991px) {
+  /* font size */
+  .fs-md-12 {
+    font-size: 12px;
+  }
+  .fs-md-14 {
+    font-size: 14px;
+  }
+  .fs-md-16 {
+    font-size: 16px;
+  }
+  .fs-md-18 {
+    font-size: 18px;
+  }
+  .fs-md-20 {
+    font-size: 20px;
+  }
+  .fs-md-22 {
+    font-size: 22px;
+  }
+  .fs-md-24 {
+    font-size: 24px;
+  }
+  .fs-md-26 {
+    font-size: 26px;
+  }
+  .fs-md-28 {
+    font-size: 28px;
+  }
+  .fs-md-30 {
+    font-size: 30px;
+  }
+  .fs-md-40 {
+    font-size: 40px;
+  }
+  .fs-md-50 {
+    font-size: 50px;
+  }
+
+  /* width */
+  .w-md-50 {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+}
+@media (max-width: 767px) {
+  /* font size */
+  .fs-sm-12 {
+    font-size: 12px;
+  }
+  .fs-sm-14 {
+    font-size: 14px;
+  }
+  .fs-sm-16 {
+    font-size: 16px;
+  }
+  .fs-sm-18 {
+    font-size: 18px;
+  }
+  .fs-sm-20 {
+    font-size: 20px;
+  }
+  .fs-sm-30 {
+    font-size: 30px;
+  }
+}
