@@ -103,22 +103,6 @@ $this->title = 'Devices For Kids';
 </section>
 <section class="listsection">
     <div class="container">
-        <?php
-        $accessToken = "EAAHAZBeRuF6YBAD34JLKdVCANW1DS2BNmXkGEZC0St011WMsRQbu7JOZCOekXWqzR2YUlYRZAJgvkikonl26tueK8qkphFAFjYfEEoALMSpm9aZBN0Ui9AZB8aZCWwhiNhRytYL77qhM1FizZCQFKigCA1CZCF1a6jZCcab1tJuAN2ZAkSGSm7ZCQ4hG";
-        $ig_id = "17841447771512559";
-        $api_version="v10.0";
-        $fields="username,media_count,followers_count,profile_picture_url,media,biography";
-        $mainUrl = "https://graph.facebook.com";
-        $url="$mainUrl/$api_version/$ig_id?fields=$fields&access_token=$accessToken";
-        $response = @file_get_contents( $url);
-        if($response!=false){
-            $data=json_decode($response,true);
-            if($data!=null){
-                $media=$data['media']['data'];
-            }
-        }
-
-        ?>
         <a href="<?=$insta_link="https://www.instagram.com/".$metadata['username']?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
