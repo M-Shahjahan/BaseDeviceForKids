@@ -62,10 +62,10 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    /*public function actionIndex()
     {
         return $this->render('index');
-    }
+    }*/
 
     /**
      * Login action.
@@ -128,7 +128,7 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-    public function actionNomination(){
+    public function actionIndex(){
         $model = new NominationForm;
         if($model->load(Yii::$app->request->post()) && $model->validate()){
             Yii::$app->session->setFlash('success','You have entered the data correctly');
