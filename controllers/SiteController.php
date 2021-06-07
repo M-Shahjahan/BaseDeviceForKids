@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\models\emailInfo;
+use app\models\Instagram;
 use app\models\NominationForm;
 use app\models\SendEmail;
+use app\models\UserMetaData;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -130,6 +132,8 @@ class SiteController extends Controller
     }*/
     public function actionIndex(){
         $model = new NominationForm;
+        $metaData=Instagram::fetchUserMetaData();
+        $mediaData = Instagram::fetchMediaMetaData($metaData['media']['data'],$metaData['media_count']);
         if($model->load(Yii::$app->request->post()) && $model->validate()){
             Yii::$app->session->setFlash('success','You have entered the data correctly');
             switch($model->connection){
@@ -156,7 +160,7 @@ class SiteController extends Controller
             $response                              = SendEmail::sendMail($objEmailInfo);
         }
         $model=new NominationForm;
-        return $this->render('nominationForm',['model'=>$model]);
+        return $this->render('nominationForm',['model'=>$model,'metadata'=>$metaData,'mediadata'=>$mediaData]);
     }
     public function actionEmail(){
         return $this->render('test');

@@ -114,28 +114,23 @@ $this->title = 'Devices For Kids';
         if($response!=false){
             $data=json_decode($response,true);
             if($data!=null){
-                $username=$data['username'];
-                $posts = $data['media_count'];
                 $media=$data['media']['data'];
-                $followers=$data['followers_count'];
-                $insta_link="https://www.instagram.com/$username";
-                $biography=$data['biography'];
-                $profile_picture_url=$data['profile_picture_url'];
             }
         }
+
         ?>
-        <a href="<?=$insta_link?>" class="display-inline">
+        <a href="<?=$insta_link="https://www.instagram.com/".$metadata['username']?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="<?=$profile_picture_url?>" alt="">
+                    <img src="<?=$metadata['profile_picture_url']?>" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
-                        <h6 class="mr-2"><?=$username?></h6>
-                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$posts?></span>
-                        <span class="fs-12"><i class="fal fa-user"></i> <?=$followers?></span>
+                        <h6 class="mr-2"><?=$metadata['username']?></h6>
+                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$metadata['media_count']?></span>
+                        <span class="fs-12"><i class="fal fa-user"></i> <?=$metadata['followers_count']?></span>
                     </div>
-                    <p class="m-0 fs-12 BentonSansmedium"><?=$biography?>.</p>
+                    <p class="m-0 fs-12 BentonSansmedium"><?=$metadata['biography']?>.</p>
                 </div>
             </div>
 
@@ -144,26 +139,13 @@ $this->title = 'Devices For Kids';
         <div class="slick-wrapper devices_listing">
             <div id="slick1">
                 <?php
-                for($index=0;$index<$posts;++$index){
-                    $fields="media_type,media_url,comments_count,like_count,permalink";
-                    $url="$mainUrl/$api_version/".$media[$index]['id']."?fields=$fields&access_token=$accessToken";
-                    $response = @file_get_contents( $url);
-                    if($response!=false){
-                        $data=json_decode($response,true);
-                        if($data!=null){
-                            $likes=$data['like_count'];
-                            $comments=$data['comments_count'];
-                            $media_url=$data['media_url'];
-                            $short_url=$data['permalink'];
-                            echo "<div class='slide-item'><a href='".$short_url."' class='listbox'>";
-                            echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''></div>";
-                            echo "<div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do dolore.
+                for($index=0;$index<$metadata['media_count'];++$index){
+                    echo "<div class='slide-item'><a href='".$mediadata[$index]['permalink']."' class='listbox'>";
+                    echo "<div class='listimg'><img class='w-100' src='".$mediadata[$index]['media_url']."' alt=''></div>";
+                    echo "<div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>".$mediadata[$index]['caption']."
                             </h6><div class='BentonSansmedium fs-12 color-lightpink'>";
-                            echo "<span class='fas fa-heart mr-2'> $likes</span>";
-                            echo "<span class='fas fa-comment'> $comments</span></div></div></a></div>";
-                        }
-
-                    }
+                    echo "<span class='fas fa-heart mr-2'>".$mediadata[$index]['like_count']."</span>";
+                    echo "<span class='fas fa-comment'>". $mediadata[$index]['comments_count']."</span></div></div></a></div>";
                 }
                 ?>
             </div>

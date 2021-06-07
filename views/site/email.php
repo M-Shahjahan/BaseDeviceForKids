@@ -1,7 +1,5 @@
 <html>
 <body>
-Hi Mark,
-<br><br>
 A new message has been received from Devices For Kids. The information of the nominated school is given below:
 <br><br>
 <strong>Name : </strong><?=$model->name?><br>
