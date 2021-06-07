@@ -187,12 +187,16 @@ footer {
 .cssradio input[type="radio"] {
   border: 0.1rem solid #fff;
   border-radius: 50%;
-  top: -0.15rem;
+  /* top: -0.15rem; */
+  top: -4px;
   background-color: transparent;
 }
 .cssradio input[type="radio"]:checked {
   background-image: radial-gradient(0.7rem circle at 50% 50%, #e00273 45%, transparent 0%);
   background-color: #fff;
+}
+.cssradio input[type="radio"]:checked:focus {
+  outline: none;
 }
 .captcha-box {
   margin-top: 8px;
@@ -208,6 +212,7 @@ button.submit {
   align-items: center;
   justify-content: space-between;
   border: solid 2px #092864;
+  font-size: 18px;
 }
 button.submit:hover {
   background-color: transparent;
@@ -381,7 +386,7 @@ button.submit:hover {
 }
 .footer-form-wrap .form-group {
   margin-bottom: 20px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 /* aminatin block */
