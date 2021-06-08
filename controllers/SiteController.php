@@ -152,10 +152,10 @@ class SiteController extends Controller
             $EmailBody=$this->render('email',['model'=>$model]);
             $objEmailInfo                          = new EmailInfo();
             $objEmailInfo->_FromName               = "Device For Kids";
-            $objEmailInfo->_FromEmailAddress       = "i150123@nu.edu.pk";
+            $objEmailInfo->_FromEmailAddress       = "hello@devicesforkids.co.uk";
             $objEmailInfo->_ToEmailAddress         = "shahjahan.mehmood.mirza@dynamologic.com";
             $objEmailInfo->_EmailSubject           = "Nomination";
-            $objEmailInfo->_CCList                 = [" "];
+            $objEmailInfo->_CCList                 = ["anum.shahzadi@dynamologic.com"];
             $objEmailInfo->_EmailBody              = $EmailBody;
             $response                              = SendEmail::sendMail($objEmailInfo);
         }
