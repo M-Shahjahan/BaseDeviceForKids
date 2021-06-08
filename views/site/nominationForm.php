@@ -13,7 +13,7 @@ $this->title = 'Devices For Kids';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/x-icon" href="img/faviconLogo.png"/>
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.expressestateagency.co.uk/public/images/favicon.ico"/>
     <!--    Font Awesome 5.9-->
     <script src="https://kit.fontawesome.com/9c7309bfe2.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
@@ -104,7 +104,7 @@ $this->title = 'Devices For Kids';
 <section class="listsection">
     <div class="container">
         <?php
-        $accessToken = "EAAHAZBeRuF6YBADkr3J2Hyx0aS5TmeIgBXlZAssO4xMNBCZBgBVZAo6kNEmWcsQqvjUwtmnaroaGvLpbcrQo3ZCVL0PzmweT4dJTCWiQf8uXZBIZAYCFsJXC6ZC5gRyEnzoHIweHCtkKDlEZAtMDEzG0qZB94KCoCxTBs8bXDqjaZAbkLhmIiZAO3gaI";
+        $accessToken = "EAAHAZBeRuF6YBAJwMZBfnJXe4yx7cm8UfTQIdIO2Txs4ui2xdhGgH5oMkt4nfom3TuPoRs0WqR9ZCVFBxxQUWUMX8WcZAvQlFGIhBkrcJPSvi8qiYLdysQ3o56ZANmVg9ilIf3B2eCccjMZB2wirS6qFZALEgWqHX2ZCMiLk4B5Rine7zPLZCAaDJ";
         $ig_id = "17841447771512559";
         $api_version="v10.0";
         $fields="name,username,media_count,followers_count,profile_picture_url,media,biography";
