@@ -260,3 +260,7 @@ input,select,option {
 button {
     background: #4272d7;
 }
+.help-block{
+    color: #092864;
+    font-weight: bold;font-size: large;
+}

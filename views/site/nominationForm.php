@@ -103,18 +103,40 @@ $this->title = 'Devices For Kids';
 </section>
 <section class="listsection">
     <div class="container">
-        <a href="<?=$insta_link="https://www.instagram.com/".$metadata['username']?>" class="display-inline">
+        <?php
+        $accessToken = "EAAHAZBeRuF6YBAKyNSermKZBRKlB1EUtGxmeZCVygFhA3VwkQpu64EbPRYp5ztMiBZCkdCFqwt4ujg1OyaZBz8bIeeh8ZAgdvcsnFSoq0hihTHjgJkjkBOLdjZB35Ssk2MZAATxN1UhOkUvcLOV2SBkxi2cmjEufTrVbBMpE7kqdUKKoynpIHy3S";
+        $ig_id = "17841447771512559";
+        $api_version="v10.0";
+        $fields="username,media_count,followers_count,profile_picture_url,media,biography";
+        $mainUrl = "https://graph.facebook.com";
+        $url="$mainUrl/$api_version/$ig_id?fields=$fields&access_token=$accessToken";
+        $response = @file_get_contents( $url);
+        if($response!=false){
+            $data=json_decode($response,true);
+            if($data!=null){
+                $username=$data['username'];
+                $posts = $data['media_count'];
+                $media=$data['media']['data'];
+                $followers=$data['followers_count'];
+                $insta_link="https://www.instagram.com/$username";
+                $biography=$data['biography'];
+                $profile_picture_url=$data['profile_picture_url'];
+            }
+        }
+
+        ?>
+        <a href="<?=$insta_link?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="<?=$metadata['profile_picture_url']?>" alt="">
+                    <img src="<?=$profile_picture_url?>" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
-                        <h6 class="mr-2"><?=$metadata['username']?></h6>
-                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$metadata['media_count']?></span>
-                        <span class="fs-12"><i class="fal fa-user"></i> <?=$metadata['followers_count']?></span>
+                        <h6 class="mr-2"><?=$username?></h6>
+                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$posts?></span>
+                        <span class="fs-12"><i class="fal fa-user"></i> <?=$followers?></span>
                     </div>
-                    <p class="m-0 fs-12 BentonSansmedium"><?=$metadata['biography']?>.</p>
+                    <p class="m-0 fs-12 BentonSansmedium"><?=$biography?>.</p>
                 </div>
             </div>
 
@@ -122,14 +144,39 @@ $this->title = 'Devices For Kids';
 
         <div class="slick-wrapper devices_listing">
             <div id="slick1">
-                <?php
-                for($index=0;$index<$metadata['media_count'];++$index){
-                    echo "<div class='slide-item'><a href='".$mediadata[$index]['permalink']."' class='listbox'>";
-                    echo "<div class='listimg'><img class='w-100' src='".$mediadata[$index]['media_url']."' alt=''></div>";
-                    echo "<div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>".$mediadata[$index]['caption']."
-                            </h6><div class='BentonSansmedium fs-12 color-lightpink'>";
-                    echo "<span class='fas fa-heart mr-2'>".$mediadata[$index]['like_count']."</span>";
-                    echo "<span class='fas fa-comment'>". $mediadata[$index]['comments_count']."</span></div></div></a></div>";
+            <?php
+            for($index=0;$index<$posts;++$index){
+                $fields="media_type,media_url,comments_count,like_count,permalink,caption";
+                $url="$mainUrl/$api_version/".$media[$index]['id']."?fields=$fields&access_token=$accessToken";
+                $response = @file_get_contents( $url);
+                if($response!=false){
+                    $data=json_decode($response,true);
+                    if($data!=null){
+                        $likes=$data['like_count'];
+                        $comments=$data['comments_count'];
+                        $media_url=$data['media_url'];
+                        $short_url=$data['permalink'];
+                        $caption=$data['caption'];
+                        $type=$data['media_type'];
+                        echo "<div class='slide-item'><a href='".$short_url."' class='listbox'>";
+
+                        if(!strcmp($type,	"CAROUSEL_ALBUM")){
+                            echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
+                        }
+                        elseif (!strcmp($type,	"VIDEO")){
+                            echo "<div class='listimg'><video class='w-100'><source src=$media_url type='video/mp4'></video>";
+                        }
+                        else{
+                            echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
+                        }
+                        echo "</div><div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>$caption
+                        </h6><div class='BentonSansmedium fs-12 color-lightpink'>";
+
+                        echo "<span class='fas fa-heart mr-2'> $likes</span>";
+                        echo "<span class='fas fa-comment'> $comments</span></div></div></a></div>";
+                        }
+
+                    }
                 }
                 ?>
             </div>
@@ -151,31 +198,31 @@ $this->title = 'Devices For Kids';
                 <?php $form=ActiveForm::begin(['options' => ['class' => 'footer-form-wrap']])?>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'name')->label('Name',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'name')->label('Your Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'email')->label('Email',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'email')->label('Your Email',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'school')->label('School Name',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'school')->label('School Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'address')->label('School Address',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'address')->label('School Address',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'],['class'=>'cssradio BentonSansbold m-0'])->label('Connection To School',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'],['class'=>'cssradio BentonSansbold m-0'])->label('Connection To School',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'contact')->label('Name Of Contact',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'contact')->label('Name Of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'position')->label('Position of the Contact',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'position')->label('Position of the Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'emailAddress')->label('Connection Email Address',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'emailAddress')->label('Email Address of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
                         <div class="col-md-12 form-group">
-                            <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold']);?>
+                            <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
                         </div>
 
                         <div class="col-md-6 form-group">
