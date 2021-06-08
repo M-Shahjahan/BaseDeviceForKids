@@ -211,7 +211,7 @@ button.submit {
   align-items: center;
   justify-content: space-between;
   border: solid 2px #092864;
-  font-size: 18px;
+  font-size: 16px;
 }
 button.submit:hover {
   background-color: transparent;
@@ -434,7 +434,15 @@ button.submit:hover {
   opacity: 1;
   filter: alpha(opacity=100);
 }
-
+.captcha-box .check-box-label p {
+  font-size: 18px;
+}
+.footer-form-wrap .has-error .help-block {
+  color: #730c0c;
+  font-size: 14px;
+  position: absolute;
+  font-weight: 500;
+}
 /* mediaqueries */
 
 @media (max-width: 1199px) {
