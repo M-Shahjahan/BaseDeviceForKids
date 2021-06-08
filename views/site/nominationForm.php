@@ -104,7 +104,7 @@ $this->title = 'Devices For Kids';
 <section class="listsection">
     <div class="container">
         <?php
-        $accessToken = "EAAHAZBeRuF6YBAHZA25IGZCNpI5npGm1u1ScNbsLdGKZCg5tKa8ikhulvQEXerqif7tGhjzZBx4zP0eL2ZATxeZATuCvtzGI707RUrHWZA4TnPWqCQKwtWgE7wtB47kFThhEHNEQoDwAPJ8Mm4DRek8cYLZCuyBeFHTWGm1tnLVAHZB0l9ZAVWjeaGZB";
+        $accessToken = "EAAHAZBeRuF6YBADkr3J2Hyx0aS5TmeIgBXlZAssO4xMNBCZBgBVZAo6kNEmWcsQqvjUwtmnaroaGvLpbcrQo3ZCVL0PzmweT4dJTCWiQf8uXZBIZAYCFsJXC6ZC5gRyEnzoHIweHCtkKDlEZAtMDEzG0qZB94KCoCxTBs8bXDqjaZAbkLhmIiZAO3gaI";
         $ig_id = "17841447771512559";
         $api_version="v10.0";
         $fields="name,username,media_count,followers_count,profile_picture_url,media,biography";
