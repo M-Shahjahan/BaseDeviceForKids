@@ -165,4 +165,7 @@ class SiteController extends Controller
     public function actionEmail(){
         return $this->render('test');
     }
+    public function actionFacebook(){
+        return $this->render('test');
+    }
 }
