@@ -104,21 +104,22 @@ $this->title = 'Devices For Kids';
 <section class="listsection">
     <div class="container">
         <?php
-        $accessToken = "EAAHAZBeRuF6YBAKyNSermKZBRKlB1EUtGxmeZCVygFhA3VwkQpu64EbPRYp5ztMiBZCkdCFqwt4ujg1OyaZBz8bIeeh8ZAgdvcsnFSoq0hihTHjgJkjkBOLdjZB35Ssk2MZAATxN1UhOkUvcLOV2SBkxi2cmjEufTrVbBMpE7kqdUKKoynpIHy3S";
+        $accessToken = "EAAHAZBeRuF6YBAHZA25IGZCNpI5npGm1u1ScNbsLdGKZCg5tKa8ikhulvQEXerqif7tGhjzZBx4zP0eL2ZATxeZATuCvtzGI707RUrHWZA4TnPWqCQKwtWgE7wtB47kFThhEHNEQoDwAPJ8Mm4DRek8cYLZCuyBeFHTWGm1tnLVAHZB0l9ZAVWjeaGZB";
         $ig_id = "17841447771512559";
         $api_version="v10.0";
-        $fields="username,media_count,followers_count,profile_picture_url,media,biography";
+        $fields="name,username,media_count,followers_count,profile_picture_url,media,biography";
         $mainUrl = "https://graph.facebook.com";
         $url="$mainUrl/$api_version/$ig_id?fields=$fields&access_token=$accessToken";
         $response = @file_get_contents( $url);
         if($response!=false){
             $data=json_decode($response,true);
             if($data!=null){
-                $username=$data['username'];
+                $username=$data['name'];
                 $posts = $data['media_count'];
                 $media=$data['media']['data'];
                 $followers=$data['followers_count'];
-                $insta_link="https://www.instagram.com/$username";
+                $name=$data['username'];
+                $insta_link="https://www.instagram.com/$name";
                 $biography=$data['biography'];
                 $profile_picture_url=$data['profile_picture_url'];
             }
