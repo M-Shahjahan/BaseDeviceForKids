@@ -9,7 +9,7 @@
   margin-right: 10px;
 }
 .header {
-  margin-bottom: 32rem;
+  margin-bottom: 22rem;
   width: 100%;
   position: relative;
 }
@@ -491,7 +491,7 @@ button.submit:hover {
     margin: 40px 0 0 0px;
   }
   section.digital_device {
-    margin-top: 16em;
+    margin-top: 12em;
   }
 }
 
