@@ -438,10 +438,10 @@ button.submit:hover {
   font-size: 18px;
 }
 .footer-form-wrap .has-error .help-block {
-  color: #730c0c;
-  font-size: 14px;
+  color: #092864;
+  font-size: 16px;
   position: absolute;
-  font-weight: 500;
+  font-weight: bold;
 }
 /* mediaqueries */
 
