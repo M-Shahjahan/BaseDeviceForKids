@@ -199,31 +199,31 @@ $this->title = 'Devices For Kids';
                 <?php $form=ActiveForm::begin(['options' => ['class' => 'footer-form-wrap']])?>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'name')->label('Your Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'name')->label('Your Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'email')->label('Your Email',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'email')->label('Your Email',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'school')->label('School Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'school')->label('School Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'address')->label('School Address',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'address')->label('School Address',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'],['class'=>'cssradio BentonSansbold m-0'])->label('Connection To School',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'],['class'=>'cssradio BentonSansbold m-0'])->label('Connection To School',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'contact')->label('Name Of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'contact')->label('Name Of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'position')->label('Position of the Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'position')->label('Position of the Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'emailAddress')->label('Email Address of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'emailAddress')->label('Email Address of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-12 form-group">
-                            <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold'])->error(['style'=>'color:#092864;font-weight: bold;font-size: large;']);?>
+                            <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
 
                         <div class="col-md-6 form-group">
