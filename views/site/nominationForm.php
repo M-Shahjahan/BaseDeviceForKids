@@ -13,7 +13,7 @@ $this->title = 'Devices For Kids';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://www.expressestateagency.co.uk/public/images/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="img/faviconLogo.png"/>
     <!--    Font Awesome 5.9-->
     <script src="https://kit.fontawesome.com/9c7309bfe2.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
