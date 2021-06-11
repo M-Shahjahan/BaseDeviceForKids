@@ -9,7 +9,7 @@
   margin-right: 10px;
 }
 .header {
-  margin-bottom: 32rem;
+  margin-bottom: 22rem;
   width: 100%;
   position: relative;
 }
@@ -438,10 +438,10 @@ button.submit:hover {
   font-size: 18px;
 }
 .footer-form-wrap .has-error .help-block {
-  color: #730c0c;
-  font-size: 14px;
+  color: #092864;
+  font-size: 16px;
   position: absolute;
-  font-weight: 500;
+  font-weight: bold;
 }
 /* mediaqueries */
 
@@ -491,7 +491,7 @@ button.submit:hover {
     margin: 40px 0 0 0px;
   }
   section.digital_device {
-    margin-top: 16em;
+    margin-top: 12em;
   }
 }
 
@@ -553,6 +553,12 @@ button.submit:hover {
   }
   .socialicon {
     margin-left: 15px;
+  }
+  .footer-form-wrap .has-error .help-block {
+    font-size: 13px;
+  }
+  .footer-form-wrap .form-group {
+    margin-bottom: 8px;
   }
 }
 @media (max-width: 540px) {

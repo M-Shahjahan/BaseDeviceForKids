@@ -11,7 +11,9 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => 'img/faviconLogo.png']);
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
