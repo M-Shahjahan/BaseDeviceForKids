@@ -216,6 +216,9 @@ $this->title = 'Devices For Kids';
                         <div class="col-md-6 form-group">
                             <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
                         </div>
+                        <div class="col-md-6 form-group">
+                            <div data-captcha-enable="true"></div>
+                        </div>
                     </div>
                 <?php $form=ActiveForm::end()?>
 <!--                --><?php

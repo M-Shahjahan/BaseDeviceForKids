@@ -20,7 +20,7 @@ class NominationForm extends Model
     {
         return [
             [['name','email','school','address','contact','position','connection','emailAddress','otherInfo'],'required'],
-            ['email','email'],
+            [['email','emailAddress'],'email'],
         ];
     }
 }
