@@ -111,17 +111,23 @@ $this->title = 'Devices For Kids';
         $fields="id,username,media_count,media";
         $mainUrl = "https://graph.instagram.com";
         $url="$mainUrl/$ig_id?fields=$fields&access_token=$accessToken";
-        $response = @file_get_contents( $url);
-        if($response!=false){
-            $data=json_decode($response,true);
-            if($data!=null){
-                $username=$data['username'];
-                $posts = $data['media_count'];;
-                $media=$data['media']['data'];
-                $insta_link="https://www.instagram.com/$username";
-                $profile_pic_url="https://scontent.fisb5-1.fna.fbcdn.net/v/t51.2885-15/195867082_489712345615008_5419897378345779693_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=86c713&_nc_ohc=AfTJpzT7OxMAX9ARBov&_nc_ht=scontent.fisb5-1.fna&oh=df10d363652edcf36c47b714288d0eb5&oe=60C7ACD4";
-            }
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, $url);
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+        $data = json_decode(curl_exec($curlSession));
+        curl_close($curlSession);
+        //$response = @file_get_contents( $url);
+
+        if($data!=null){
+            $username=$data->username;
+            $posts = $data->media_count;
+            $media=$data->media->data;
+            $insta_link="https://www.instagram.com/$username";
+            $profile_pic_url="https://scontent.fisb5-1.fna.fbcdn.net/v/t51.2885-15/195867082_489712345615008_5419897378345779693_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=86c713&_nc_ohc=AfTJpzT7OxMAX9ARBov&_nc_ht=scontent.fisb5-1.fna&oh=df10d363652edcf36c47b714288d0eb5&oe=60C7ACD4";
         }
+
 
         ?>
         <a href="<?=$insta_link?>" class="display-inline">
@@ -146,26 +152,30 @@ $this->title = 'Devices For Kids';
             <?php
             for($index=0;$index<$posts;++$index){
                 $fields="media_type,media_url,permalink,caption";
-                $url="$mainUrl/".$media[$index]['id']."?fields=$fields&access_token=$accessToken";
-                $response = @file_get_contents( $url);
-                if($response!=false){
-                    $data=json_decode($response,true);
-                    if($data!=null){
-                        $media_url=$data['media_url'];
-                        $short_url=$data['permalink'];
-                        $caption=$data['caption'];
-                        $type=$data['media_type'];
-                        echo "<div class='slide-item'><a href='".$short_url."' class='listbox'>";
+                $url="$mainUrl/".$media[$index]->id."?fields=$fields&access_token=$accessToken";
 
-                        echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
-                        echo "</div><div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>$caption
+                $curlSession = curl_init();
+                curl_setopt($curlSession, CURLOPT_URL, $url);
+                curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+                curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+                $data = json_decode(curl_exec($curlSession));
+                curl_close($curlSession);
+
+                if($data!=null){
+                    $media_url=$data->media_url;
+                    $short_url=$data->permalink;
+                    $caption=$data->caption;
+                    $type=$data->media_type;
+                    echo "<div class='slide-item'><a href='".$short_url."' class='listbox'>";
+
+                    echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
+                    echo "</div><div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>$caption
                         </h6><div class='BentonSansmedium fs-12 color-lightpink'>";
 
-                        echo "<span class='fas fa-heart mr-2'> 0</span>";
-                        echo "<span class='fas fa-comment'> 0</span></div></div></a></div>";
-                        }
-
-                    }
+                    echo "<span class='fas fa-heart mr-2'> 0</span>";
+                    echo "<span class='fas fa-comment'> 0</span></div></div></a></div>";
+                }
                 }
                 ?>
             </div>
