@@ -223,13 +223,13 @@ $this->title = 'Devices For Kids';
                         <div class="col-md-12 form-group">
                             <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
-
-                        <div class="col-md-6 form-group">
-                            <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
-                        </div>
                         <div class="col-md-6 form-group">
                             <div class="g-recaptcha" data-sitekey="6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i"></div>
                         </div>
+                        <div class="col-md-6 form-group">
+                            <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
+                        </div>
+
                     </div>
                 <?php $form=ActiveForm::end()?>
 <!--                --><?php
