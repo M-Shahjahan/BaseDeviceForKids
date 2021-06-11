@@ -17,6 +17,7 @@ $this->title = 'Devices For Kids';
     <link rel="shortcut icon" type="image/x-icon" href="img/faviconLogo.png"/>
     <!--    Font Awesome 5.9-->
     <script src="https://kit.fontawesome.com/9c7309bfe2.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
     <!--    Bootstrap 4.3.1-->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -217,7 +218,7 @@ $this->title = 'Devices For Kids';
                             <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <div data-captcha-enable="true"></div>
+                            <div class="g-recaptcha" data-sitekey="6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i"></div>
                         </div>
                     </div>
                 <?php $form=ActiveForm::end()?>
