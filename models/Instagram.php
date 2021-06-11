@@ -9,10 +9,10 @@ class Instagram
     
     
     public static function fetchUserMetaData(){
-        $accessToken ="EAAHAZBeRuF6YBAOA5yUZCuIP4S3xv5KpejhP4u54ylXQG0gVXM4kiwstdYfp6ZAau8Vw0dP2tLHqFY52bSX0oy6ZAlhPwPKc7FDL4yDhcuBzjON5v23tSpzvXRW97XrG4tx1HsATv2ZBm4XjKErQ7WqSwZC4ZChU9YmpF2rw3nEGRmk3TvxJXkJ";
+        $accessToken ="EAAHAZBeRuF6YBAAXzYBBV7yasitn0e56fZCihAjHul23WF8sXqWS6ZBBto4z7nZBrZBYsnaN7Dhx7NTnWr0FjWQ2rlrJ5xAvZAf1CvfZCYogEjgxajxXd2ODxJHEus46qznoJJZB435A5XcwANjUxcBPlVjB3R1tLfTg54RZB6PW4jgLaMH4Ox4Ym";
         $ig_id = "17841447771512559";
         $api_version="v10.0";
-        $fields="username,media_count,followers_count,profile_picture_url,media,biography";
+        $fields="username,media_count,followers_count,profile_picture_url,media,biography,name";
         $mainUrl = "https://graph.facebook.com";
         $url=$mainUrl."/".$api_version."/".$ig_id."?fields=".$fields."&access_token=".$accessToken;
         $response = @file_get_contents( $url);
@@ -25,7 +25,7 @@ class Instagram
     public static function fetchMediaMetaData($media,$size)
     {
         $mediaFields="media_type,media_url,comments_count,like_count,permalink,caption";
-        $accessToken ="EAAHAZBeRuF6YBAOA5yUZCuIP4S3xv5KpejhP4u54ylXQG0gVXM4kiwstdYfp6ZAau8Vw0dP2tLHqFY52bSX0oy6ZAlhPwPKc7FDL4yDhcuBzjON5v23tSpzvXRW97XrG4tx1HsATv2ZBm4XjKErQ7WqSwZC4ZChU9YmpF2rw3nEGRmk3TvxJXkJ";
+        $accessToken ="EAAHAZBeRuF6YBAAXzYBBV7yasitn0e56fZCihAjHul23WF8sXqWS6ZBBto4z7nZBrZBYsnaN7Dhx7NTnWr0FjWQ2rlrJ5xAvZAf1CvfZCYogEjgxajxXd2ODxJHEus46qznoJJZB435A5XcwANjUxcBPlVjB3R1tLfTg54RZB6PW4jgLaMH4Ox4Ym";
         $api_version="v10.0";
         $mainUrl = "https://graph.facebook.com";
         $dataReturned=[];

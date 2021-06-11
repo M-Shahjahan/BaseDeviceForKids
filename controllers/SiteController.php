@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\emailInfo;
 use app\models\Instagram;
+use app\models\InstagramUser;
 use app\models\NominationForm;
 use app\models\SendEmail;
 use app\models\UserMetaData;
@@ -132,8 +133,24 @@ class SiteController extends Controller
     }*/
     public function actionIndex(){
         $model = new NominationForm;
-        $metaData=Instagram::fetchUserMetaData();
-        $mediaData = Instagram::fetchMediaMetaData($metaData['media']['data'],$metaData['media_count']);
+        //$metaData=Instagram::fetchUserMetaData();
+        //$mediaData = Instagram::fetchMediaMetaData($metaData['media']['data'],$metaData['media_count']);
+        /*$value=new instagramuser();
+        $value->name=$metaData['name'];
+        $value->username=$metaData['username'];
+        $value->posts=$metaData['media_count'];
+        $value->followers=$metaData['followers_count'];
+        $value->biography=$metaData['biography'];
+        $value->profile_pic_url=$metaData['profile_picture_url'];
+        $value->insta_url="https://www.instagram.com/$value->username";
+        if($value->validate() && $value->save()){
+            echo "o yeah<br>";
+        }
+        else{
+            echo "no yeah";
+        }
+        print_r($value);
+        exit;*/
         if($model->load(Yii::$app->request->post()) && $model->validate()){
             Yii::$app->session->setFlash('success','You have entered the data correctly');
             switch($model->connection){
@@ -159,13 +176,9 @@ class SiteController extends Controller
             $objEmailInfo->_EmailBody              = $EmailBody;
             $response                              = SendEmail::sendMail($objEmailInfo);
         }
+
         $model=new NominationForm;
-        return $this->render('nominationForm',['model'=>$model,'metadata'=>$metaData,'mediadata'=>$mediaData]);
+        return $this->render('nominationForm',['model'=>$model]);
     }
-    public function actionEmail(){
-        return $this->render('test');
-    }
-    public function actionFacebook(){
-        return $this->render('test');
-    }
+
 }

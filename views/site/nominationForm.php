@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 $this->title = 'Devices For Kids';
+
 ?>
 
 <!DOCTYPE html>
@@ -104,24 +105,19 @@ $this->title = 'Devices For Kids';
 <section class="listsection">
     <div class="container">
         <?php
-        $accessToken = "EAAHAZBeRuF6YBAMHgx01frYP2a5uInb3lW4kN01qguIxValDRF2n0SX6LOs7viOogup4F54GEQc7Cv8YHjOvTqCmnRHIIvbceIicfSFx194oJqYuOWln9CKDQk1QuqlcUPs1WozYbv0lZCBtHNZCK5VLcEsnMfoVaqQf8qj6cRUHlvLmvVZAjK8njLLLGZBcZD";
+        $accessToken = "IGQVJYWlZAqdmhqUllib1NBbmlrU1VtNGhUQTZAzVnRsSjNzZAlZARcDhwQUVSNHhsV21hU1N3WTljcGVhYVBHU3UtcXItOF9XZA1BmcEpQcVZAkaWhKbGJ1b1ItbUk1VVc2T29BWnV3dE5qX0ZABQXdCcTFkMAZDZD";
         $ig_id = "17841447771512559";
-        $api_version="v10.0";
-        $fields="name,username,media_count,followers_count,profile_picture_url,media,biography";
-        $mainUrl = "https://graph.facebook.com";
-        $url="$mainUrl/$api_version/$ig_id?fields=$fields&access_token=$accessToken";
+        $fields="id,username,media_count,media";
+        $mainUrl = "https://graph.instagram.com";
+        $url="$mainUrl/$ig_id?fields=$fields&access_token=$accessToken";
         $response = @file_get_contents( $url);
         if($response!=false){
             $data=json_decode($response,true);
             if($data!=null){
-                $username=$data['name'];
-                $posts = $data['media_count'];
+                $username=$data['username'];
+                $posts = $data['media_count'];;
                 $media=$data['media']['data'];
-                $followers=$data['followers_count'];
-                $name=$data['username'];
-                $insta_link="https://www.instagram.com/$name";
-                $biography=$data['biography'];
-                $profile_picture_url=$data['profile_picture_url'];
+                $insta_link="https://www.instagram.com/$username";
             }
         }
 
@@ -129,15 +125,15 @@ $this->title = 'Devices For Kids';
         <a href="<?=$insta_link?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="<?=$profile_picture_url?>" alt="">
+                    <img src="" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
                         <h6 class="mr-2"><?=$username?></h6>
                         <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$posts?></span>
-                        <span class="fs-12"><i class="fal fa-user"></i> <?=$followers?></span>
+                        <span class="fs-12"><i class="fal fa-user"></i> 12</span>
                     </div>
-                    <p class="m-0 fs-12 BentonSansmedium"><?=$biography?>.</p>
+                    <p class="m-0 fs-12 BentonSansmedium">Power is not will, it is a phenomenon to make things physically happen.</p>
                 </div>
             </div>
 
@@ -147,34 +143,24 @@ $this->title = 'Devices For Kids';
             <div id="slick1">
             <?php
             for($index=0;$index<$posts;++$index){
-                $fields="media_type,media_url,comments_count,like_count,permalink,caption";
-                $url="$mainUrl/$api_version/".$media[$index]['id']."?fields=$fields&access_token=$accessToken";
+                $fields="media_type,media_url,permalink,caption";
+                $url="$mainUrl/".$media[$index]['id']."?fields=$fields&access_token=$accessToken";
                 $response = @file_get_contents( $url);
                 if($response!=false){
                     $data=json_decode($response,true);
                     if($data!=null){
-                        $likes=$data['like_count'];
-                        $comments=$data['comments_count'];
                         $media_url=$data['media_url'];
                         $short_url=$data['permalink'];
                         $caption=$data['caption'];
                         $type=$data['media_type'];
                         echo "<div class='slide-item'><a href='".$short_url."' class='listbox'>";
 
-                        if(!strcmp($type,	"CAROUSEL_ALBUM")){
-                            echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
-                        }
-                        elseif (!strcmp($type,	"VIDEO")){
-                            echo "<div class='listimg'><video class='w-100'><source src=$media_url type='video/mp4'></video>";
-                        }
-                        else{
-                            echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
-                        }
+                        echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
                         echo "</div><div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>$caption
                         </h6><div class='BentonSansmedium fs-12 color-lightpink'>";
 
-                        echo "<span class='fas fa-heart mr-2'> $likes</span>";
-                        echo "<span class='fas fa-comment'> $comments</span></div></div></a></div>";
+                        echo "<span class='fas fa-heart mr-2'> 0</span>";
+                        echo "<span class='fas fa-comment'> 0</span></div></div></a></div>";
                         }
 
                     }
