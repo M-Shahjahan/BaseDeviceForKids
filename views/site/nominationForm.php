@@ -118,6 +118,7 @@ $this->title = 'Devices For Kids';
                 $posts = $data['media_count'];;
                 $media=$data['media']['data'];
                 $insta_link="https://www.instagram.com/$username";
+                $profile_pic_url="https://scontent.fisb5-1.fna.fbcdn.net/v/t51.2885-15/195867082_489712345615008_5419897378345779693_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=86c713&_nc_ohc=AfTJpzT7OxMAX9ARBov&_nc_ht=scontent.fisb5-1.fna&oh=df10d363652edcf36c47b714288d0eb5&oe=60C7ACD4";
             }
         }
 
@@ -125,7 +126,7 @@ $this->title = 'Devices For Kids';
         <a href="<?=$insta_link?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="" alt="">
+                    <img src="<?=$profile_pic_url?>" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
