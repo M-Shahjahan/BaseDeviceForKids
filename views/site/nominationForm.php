@@ -102,10 +102,10 @@ $this->title = 'Devices For Kids';
         </div>
     </div>
 </section>
-<!--<section class="listsection">
+<section class="listsection">
     <div class="container">
         <?php
-/*        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
+        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
         $ig_id = "17841447771512559";
         $fields="id,username,media_count,media";
         $mainUrl = "https://graph.instagram.com";
@@ -128,16 +128,16 @@ $this->title = 'Devices For Kids';
         }
 
 
-        */?>
-        <a href="<?/*=$insta_link*/?>" class="display-inline">
+        ?>
+        <a href="<?=$insta_link?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="<?/*=$profile_pic_url*/?>" alt="">
+                    <img src="<?=$profile_pic_url?>" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
-                        <h6 class="mr-2"><?/*=$username*/?></h6>
-                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?/*=$posts*/?></span>
+                        <h6 class="mr-2"><?=$username?></h6>
+                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$posts?></span>
                         <span class="fs-12"><i class="fal fa-user"></i> 12</span>
                     </div>
                     <p class="m-0 fs-12 BentonSansmedium">Power is not will, it is a phenomenon to make things physically happen.</p>
@@ -149,7 +149,7 @@ $this->title = 'Devices For Kids';
         <div class="slick-wrapper devices_listing">
             <div id="slick1">
             <?php
-/*            for($index=0;$index<$posts;++$index){
+            for($index=0;$index<$posts;++$index){
                 $fields="media_type,media_url,permalink,caption";
                 $url="$mainUrl/".$media[$index]->id."?fields=$fields&access_token=$accessToken";
 
@@ -176,11 +176,11 @@ $this->title = 'Devices For Kids';
                     echo "<span class='fas fa-comment'> 0</span></div></div></a></div>";
                 }
                 }
-                */?>
+                ?>
             </div>
         </div>
     </div>
-</section>-->
+</section>
 <footer>
     <div class="container">
         <div class="row">
