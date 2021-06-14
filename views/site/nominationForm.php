@@ -222,12 +222,11 @@ $this->title = 'Devices For Kids';
                         <div class="col-md-12 form-group">
                             <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
-                        <div class="col-md-6 form-group">
-                            <?= $form->field($model,'reCaptcha')->label('')->widget(
-                                himiklab\yii2\recaptcha\ReCaptcha2::className(),
-                                ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i']
-                            ) ?>
-                        </div>
+                        <?= $form->field($model,'reCaptcha')->label(false)->widget(
+                            himiklab\yii2\recaptcha\ReCaptcha2::className(),
+                            ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i']
+                        ) ?>
+                        <hr>
                         <div class="col-md-6 form-group">
                             <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
                         </div>
