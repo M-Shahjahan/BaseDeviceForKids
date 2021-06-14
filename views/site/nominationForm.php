@@ -17,7 +17,6 @@ $this->title = 'Devices For Kids';
     <link rel="shortcut icon" type="image/x-icon" href="img/faviconLogo.png"/>
     <!--    Font Awesome 5.9-->
     <script src="https://kit.fontawesome.com/9c7309bfe2.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
     <!--    Bootstrap 4.3.1-->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -103,10 +102,10 @@ $this->title = 'Devices For Kids';
         </div>
     </div>
 </section>
-<section class="listsection">
+<!--<section class="listsection">
     <div class="container">
         <?php
-        $accessToken = "IGQVJYWlZAqdmhqUllib1NBbmlrU1VtNGhUQTZAzVnRsSjNzZAlZARcDhwQUVSNHhsV21hU1N3WTljcGVhYVBHU3UtcXItOF9XZA1BmcEpQcVZAkaWhKbGJ1b1ItbUk1VVc2T29BWnV3dE5qX0ZABQXdCcTFkMAZDZD";
+/*        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
         $ig_id = "17841447771512559";
         $fields="id,username,media_count,media";
         $mainUrl = "https://graph.instagram.com";
@@ -129,16 +128,16 @@ $this->title = 'Devices For Kids';
         }
 
 
-        ?>
-        <a href="<?=$insta_link?>" class="display-inline">
+        */?>
+        <a href="<?/*=$insta_link*/?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="<?=$profile_pic_url?>" alt="">
+                    <img src="<?/*=$profile_pic_url*/?>" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
-                        <h6 class="mr-2"><?=$username?></h6>
-                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$posts?></span>
+                        <h6 class="mr-2"><?/*=$username*/?></h6>
+                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?/*=$posts*/?></span>
                         <span class="fs-12"><i class="fal fa-user"></i> 12</span>
                     </div>
                     <p class="m-0 fs-12 BentonSansmedium">Power is not will, it is a phenomenon to make things physically happen.</p>
@@ -150,7 +149,7 @@ $this->title = 'Devices For Kids';
         <div class="slick-wrapper devices_listing">
             <div id="slick1">
             <?php
-            for($index=0;$index<$posts;++$index){
+/*            for($index=0;$index<$posts;++$index){
                 $fields="media_type,media_url,permalink,caption";
                 $url="$mainUrl/".$media[$index]->id."?fields=$fields&access_token=$accessToken";
 
@@ -177,11 +176,11 @@ $this->title = 'Devices For Kids';
                     echo "<span class='fas fa-comment'> 0</span></div></div></a></div>";
                 }
                 }
-                ?>
+                */?>
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <footer>
     <div class="container">
         <div class="row">
@@ -224,7 +223,10 @@ $this->title = 'Devices For Kids';
                             <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <div class="g-recaptcha" data-sitekey="6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i"></div>
+                            <?= $form->field($model,'reCaptcha')->label('')->widget(
+                                himiklab\yii2\recaptcha\ReCaptcha2::className(),
+                                ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i']
+                            ) ?>
                         </div>
                         <div class="col-md-6 form-group">
                             <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
@@ -232,11 +234,17 @@ $this->title = 'Devices For Kids';
 
                     </div>
                 <?php $form=ActiveForm::end()?>
-<!--                --><?php
-/*                if(Yii::$app->session->hasFlash('success')){
+                <?php
+                if(Yii::$app->session->hasFlash('success')){
                     echo Yii::$app->session->getFlash('success');
                 }
-                */?>
+                elseif (Yii::$app->session->hasFlash('failure')){
+                    echo Yii::$app->session->getFlash('failure');
+                }
+                elseif(Yii::$app->session->getFlash('fail')){
+                    echo Yii::$app->session->getFlash('failure');
+                }
+                ?>
             </div>
         </div>
     </div>
