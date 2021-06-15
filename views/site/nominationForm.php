@@ -123,7 +123,6 @@ $this->title = 'Devices For Kids';
             $username=$data->username;
             $posts = $data->media_count;
             $insta_link="https://www.instagram.com/$username";
-            $profile_pic_url="https://scontent.fisb6-1.fna.fbcdn.net/v/t51.2885-15/195867082_489712345615008_5419897378345779693_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=86c713&_nc_ohc=ZrIH-zr-iQoAX96T5GS&_nc_ht=scontent.fisb6-1.fna&oh=3f793116d4515b50a2b56610a442c93f&oe=60CD9B94";
         }
 
 
@@ -131,7 +130,7 @@ $this->title = 'Devices For Kids';
         <a href="<?=$insta_link?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="<?=$profile_pic_url?>" alt="">
+                    <img src="img/profile_pic.jpg" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
@@ -163,11 +162,33 @@ $this->title = 'Devices For Kids';
                 $media_url=$media->data[$index]->media_url;
                 $short_url=$media->data[$index]->permalink;
                 $caption=$media->data[$index]->caption;
+                $media_type=$media->data[$index]->media_type
                 ?>
                 <div class='slide-item'><a href='<?=$short_url?>' class='listbox'>
-
-                        <div class='listimg'><img class='w-100' src='<?=$media_url?>' alt=''>
-                        </div><div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'><?=$caption?>
+                        <?php
+                        if(strcmp($media_type,"VIDEO")==0){
+                            ?>
+                            <div class='listimg'>
+                                <video class='w-100' controls>
+                                    <source src='<?=$media_url?>'>
+                                </video>
+                            </div>
+                            <?php
+                        }
+                        else if(strcmp($media_type,"IMAGE")==0){
+                            ?>
+                            <div class='listimg'><img class='w-100' src='<?=$media_url?>' alt=''>
+                        </div>
+                        <?php
+                        }
+                        else{
+                            ?>
+                            <div class='listimg'><img class='w-100' src='<?=$media_url?>' alt=''>
+                        </div>
+                        <?php
+                        }
+                        ?>
+                        <div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'><?=$caption?>
                             </h6><div class='BentonSansmedium fs-12 color-lightpink'>"
 
                                 <span class='fas fa-heart mr-2'> 0</span>
@@ -194,7 +215,7 @@ $this->title = 'Devices For Kids';
                     this form.</p>
             </div>
             <div class="col-md-8">
-                <?php $form=ActiveForm::begin(['options' => ['class' => 'footer-form-wrap']])?>
+                <?php $form=ActiveForm::begin(['id'=>'nominationForm','options' => ['class' => 'footer-form-wrap']])?>
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <?= $form->field($model,'name')->label('Your Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
@@ -225,8 +246,10 @@ $this->title = 'Devices For Kids';
                         </div>
                         <?= $form->field($model,'reCaptcha')->label(false)->widget(
                             himiklab\yii2\recaptcha\ReCaptcha2::className(),
-                            ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i']
-                        ) ?>
+                            ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i',
+                            'widgetOptions' => ['class' => 'col-md-6 form-group']
+
+                        ]) ?>
                         <hr>
                         <div class="col-md-6 form-group">
                             <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
@@ -234,17 +257,11 @@ $this->title = 'Devices For Kids';
                     </div>
                 <?php $form=ActiveForm::end()?>
 
-                <?php
-                if(Yii::$app->session->hasFlash('success')){
+<!--                --><?php
+/*                if(Yii::$app->session->hasFlash('success')){
                     echo Yii::$app->session->getFlash('success');
                 }
-                elseif (Yii::$app->session->hasFlash('failure')){
-                    echo Yii::$app->session->getFlash('failure');
-                }
-                elseif(Yii::$app->session->getFlash('fail')){
-                    echo Yii::$app->session->getFlash('failure');
-                }
-                ?>
+                */?>
             </div>
         </div>
     </div>
@@ -258,7 +275,8 @@ $this->title = 'Devices For Kids';
 <script src="js/sendData.js"></script>
 <script>
     function clickBait(){
-        console.log(data);
+        var form = $('#nominationForm').serializeArray();
+        console.log(form);
     }
 
 </script>
