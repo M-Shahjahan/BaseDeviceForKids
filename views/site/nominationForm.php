@@ -218,53 +218,57 @@ $this->title = 'Devices For Kids';
                 <?php $form=ActiveForm::begin(['id'=>'nominationForm','options' => ['class' => 'footer-form-wrap']])?>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'name')->label('Your Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'name')->label('Your Name',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'email')->label('Your Email',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'email')->label('Your Email',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'school')->label('School Name',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'school')->label('School Name',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'address')->label('School Address',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'address')->label('School Address',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'],['class'=>'cssradio BentonSansbold m-0'])->label('Connection To School',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'connection')->radioList(['Parent','Teacher','Governor'],['class'=>'cssradio BentonSansbold m-0'])->label('Connection To School',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'contact')->label('Name Of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'contact')->label('Name Of Contact',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'position')->label('Position of the Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'position')->label('Position of the Contact',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-6 form-group">
-                            <?= $form->field($model,'emailAddress')->label('Email Address of Contact',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'emailAddress')->label('Email Address of Contact',['class'=>'color-white BentonSansbold']);?>
                         </div>
                         <div class="col-md-12 form-group">
-                            <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold'])->error(['style'=>'']);?>
+                            <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold']);?>
                         </div>
-                        <?= $form->field($model,'reCaptcha')->label(false)->widget(
-                            himiklab\yii2\recaptcha\ReCaptcha2::className(),
-                            ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i',
-                            'widgetOptions' => ['class' => 'col-md-6 form-group']
-
-                        ]) ?>
-                        <hr>
                         <div class="col-md-6 form-group">
-                            <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
+                            <?= $form->field($model,'reCaptcha')->label(false)->widget(
+                                \himiklab\yii2\recaptcha\ReCaptcha2::className(),
+                                ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i',
+                                ]) ?>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <?= Html::submitButton('Submit',[
+                                'class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
                         </div>
                     </div>
                 <?php $form=ActiveForm::end()?>
 
-<!--                --><?php
-/*                if(Yii::$app->session->hasFlash('success')){
-                    echo Yii::$app->session->getFlash('success');
+                <?php
+                if(Yii::$app->session->hasFlash('success')){
+                    ?>
+                    <h4 style="color: #092864;font: 20px;font-weight: bold"><?=Yii::$app->session->getFlash('success')?></h4>
+                <?php
+
                 }
-                */?>
+                ?>
             </div>
         </div>
     </div>
+
 </footer>
 <!-- banner section___end -->
 <script src="js/jquery.js"></script>
@@ -273,12 +277,5 @@ $this->title = 'Devices For Kids';
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
 <script src="js/sendData.js"></script>
-<script>
-    function clickBait(){
-        var form = $('#nominationForm').serializeArray();
-        console.log(form);
-    }
-
-</script>
 </body>
 </html>

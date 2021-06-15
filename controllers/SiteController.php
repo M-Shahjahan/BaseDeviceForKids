@@ -153,7 +153,7 @@ class SiteController extends Controller
         exit;*/
 
         if($model->load(Yii::$app->request->post()) && $model->validate()){
-            Yii::$app->session->setFlash('success','You have entered the data correctly');
+            Yii::$app->session->setFlash('success','Thank You! You have successfully submitted a Nomination');
             switch($model->connection){
                 case 0:
                     $model->connection="Parent";
@@ -176,9 +176,6 @@ class SiteController extends Controller
             $objEmailInfo->_CCList                 = ["anum.shahzadi@dynamologic.com","shahjahan.mehmood.mirza@dynamologic.com"];
             $objEmailInfo->_EmailBody              = $EmailBody;
             $response                              = SendEmail::sendMail($objEmailInfo);
-        }
-        else{
-            Yii::$app->session->setFlash('fail','Some fields are missing');
         }
         $model=new NominationForm;
         return $this->render('nominationForm',['model'=>$model]);
