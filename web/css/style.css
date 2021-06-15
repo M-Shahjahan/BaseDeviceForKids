@@ -212,6 +212,7 @@ button.submit {
   justify-content: space-between;
   border: solid 2px #092864;
   font-size: 16px;
+  margin-top: 5px;
 }
 button.submit:hover {
   background-color: transparent;
