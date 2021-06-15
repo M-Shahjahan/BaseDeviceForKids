@@ -245,14 +245,14 @@ $this->title = 'Devices For Kids';
                             <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold']);?>
                         </div>
 
-                        <div class="col-md-7 form-group">
+                        <div class="col-md-6 form-group">
                             <br>
                             <?= $form->field($model,'reCaptcha')->label(false)->widget(
                                 \himiklab\yii2\recaptcha\ReCaptcha2::className(),
                                 ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i',
                                 ]) ?>
                         </div>
-                        <div class="col-md-5 form-group">
+                        <div class="col-md-6 form-group">
                             <br>
                             <?= Html::submitButton('Submit',[
                                 'class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
