@@ -102,10 +102,10 @@ $this->title = 'Devices For Kids';
         </div>
     </div>
 </section>
-<section class="listsection">
+<!--<section class="listsection">
     <div class="container">
         <?php
-        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
+/*        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
         $ig_id = "17841447771512559";
         $fields="id,username,media_count";
         $mainUrl = "https://graph.instagram.com";
@@ -126,16 +126,16 @@ $this->title = 'Devices For Kids';
         }
 
 
-        ?>
-        <a href="<?=$insta_link?>" class="display-inline">
+        */?>
+        <a href="<?/*=$insta_link*/?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
                     <img src="img/profile_pic.jpg" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
-                        <h6 class="mr-2"><?=$username?></h6>
-                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$posts?></span>
+                        <h6 class="mr-2"><?/*=$username*/?></h6>
+                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?/*=$posts*/?></span>
                         <span class="fs-12"><i class="fal fa-user"></i> 12</span>
                     </div>
                     <p class="m-0 fs-12 BentonSansmedium">Power is not will, it is a phenomenon to make things physically happen.</p>
@@ -147,7 +147,7 @@ $this->title = 'Devices For Kids';
         <div class="slick-wrapper devices_listing">
             <div id="slick1">
             <?php
-            $fields="media_type,media_url,permalink,caption";
+/*            $fields="media_type,media_url,permalink,caption";
             $url="$mainUrl/".$ig_id."/media?fields=$fields&access_token=$accessToken";
 
             $curlSession = curl_init();
@@ -163,46 +163,46 @@ $this->title = 'Devices For Kids';
                 $short_url=$media->data[$index]->permalink;
                 $caption=$media->data[$index]->caption;
                 $media_type=$media->data[$index]->media_type
-                ?>
-                <div class='slide-item'><a href='<?=$short_url?>' class='listbox'>
+                */?>
+                <div class='slide-item'><a href='<?/*=$short_url*/?>' class='listbox'>
                         <?php
-                        if(strcmp($media_type,"VIDEO")==0){
-                            ?>
+/*                        if(strcmp($media_type,"VIDEO")==0){
+                            */?>
                             <div class='listimg'>
                                 <video class='w-100' controls>
-                                    <source src='<?=$media_url?>' type="video/mp4">
+                                    <source src='<?/*=$media_url*/?>' type="video/mp4">
                                 </video>
                             </div>
                             <?php
-                        }
+/*                        }
                         else if(strcmp($media_type,"IMAGE")==0){
-                            ?>
-                            <div class='listimg'><img class='w-100' src='<?=$media_url?>' alt=''>
+                            */?>
+                            <div class='listimg'><img class='w-100' src='<?/*=$media_url*/?>' alt=''>
                         </div>
                         <?php
-                        }
+/*                        }
                         else{
-                            ?>
-                            <div class='listimg'><img class='w-100' src='<?=$media_url?>' alt=''>
+                            */?>
+                            <div class='listimg'><img class='w-100' src='<?/*=$media_url*/?>' alt=''>
                         </div>
                         <?php
-                        }
-                        ?>
-                        <div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'><?=$caption?>
+/*                        }
+                        */?>
+                        <div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'><?/*=$caption*/?>
                             </h6><div class='BentonSansmedium fs-12 color-lightpink'>
 
                                 <span class='fas fa-heart mr-2'> 0</span>
                                 <span class='fas fa-comment'> 0</span></div></div></a></div>
                 <?php
-
+/*
             }
-            ?>
+            */?>
 
 
             </div>
         </div>
     </div>
-</section>
+</section>-->
 <footer>
     <div class="container">
         <div class="row">
@@ -244,13 +244,16 @@ $this->title = 'Devices For Kids';
                         <div class="col-md-12 form-group">
                             <?= $form->field($model,'otherInfo')->label('Any Other Information',['class'=>'color-white BentonSansbold']);?>
                         </div>
-                        <div class="col-md-6 form-group">
+
+                        <div class="col-md-7 form-group">
+                            <br>
                             <?= $form->field($model,'reCaptcha')->label(false)->widget(
                                 \himiklab\yii2\recaptcha\ReCaptcha2::className(),
                                 ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i',
                                 ]) ?>
                         </div>
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-5 form-group">
+                            <br>
                             <?= Html::submitButton('Submit',[
                                 'class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
                         </div>
@@ -268,7 +271,18 @@ $this->title = 'Devices For Kids';
             </div>
         </div>
     </div>
+    <?php
+    $script = <<< JS
+    $('#nominationForm').on('beforeSubmit',function(e) {
+      var \$form=$(this);
+      $.post(\$form.attr('action'),\$form.serialize())
+      .done(function(result) {
+        console.log(result);
+      })
+    })
+JS;
 
+    ?>
 </footer>
 <!-- banner section___end -->
 <script src="js/jquery.js"></script>
