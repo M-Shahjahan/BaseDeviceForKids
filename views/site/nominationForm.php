@@ -20,7 +20,7 @@ $this->title = 'Devices For Kids';
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.14.0/css/all.css">
     <!--    Bootstrap 4.3.1-->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Slick Slider -->
     <link rel="stylesheet" href="css/slick-theme.css">
     <link rel="stylesheet" href="css/slick.css">
@@ -107,7 +107,7 @@ $this->title = 'Devices For Kids';
         <?php
         $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
         $ig_id = "17841447771512559";
-        $fields="id,username,media_count,media";
+        $fields="id,username,media_count";
         $mainUrl = "https://graph.instagram.com";
         $url="$mainUrl/$ig_id?fields=$fields&access_token=$accessToken";
         $curlSession = curl_init();
@@ -122,9 +122,8 @@ $this->title = 'Devices For Kids';
         if($data!=null){
             $username=$data->username;
             $posts = $data->media_count;
-            $media=$data->media->data;
             $insta_link="https://www.instagram.com/$username";
-            $profile_pic_url="https://scontent.fisb5-1.fna.fbcdn.net/v/t51.2885-15/195867082_489712345615008_5419897378345779693_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=86c713&_nc_ohc=AfTJpzT7OxMAX9ARBov&_nc_ht=scontent.fisb5-1.fna&oh=df10d363652edcf36c47b714288d0eb5&oe=60C7ACD4";
+            $profile_pic_url="https://scontent.fisb6-1.fna.fbcdn.net/v/t51.2885-15/195867082_489712345615008_5419897378345779693_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=86c713&_nc_ohc=ZrIH-zr-iQoAX96T5GS&_nc_ht=scontent.fisb6-1.fna&oh=3f793116d4515b50a2b56610a442c93f&oe=60CD9B94";
         }
 
 
@@ -149,34 +148,36 @@ $this->title = 'Devices For Kids';
         <div class="slick-wrapper devices_listing">
             <div id="slick1">
             <?php
+            $fields="media_type,media_url,permalink,caption";
+            $url="$mainUrl/".$ig_id."/media?fields=$fields&access_token=$accessToken";
+
+            $curlSession = curl_init();
+            curl_setopt($curlSession, CURLOPT_URL, $url);
+            curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+            $media = json_decode(curl_exec($curlSession));
+            curl_close($curlSession);
+            //print_r($media);
             for($index=0;$index<$posts;++$index){
-                $fields="media_type,media_url,permalink,caption";
-                $url="$mainUrl/".$media[$index]->id."?fields=$fields&access_token=$accessToken";
-
-                $curlSession = curl_init();
-                curl_setopt($curlSession, CURLOPT_URL, $url);
-                curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
-                curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-
-                $data = json_decode(curl_exec($curlSession));
-                curl_close($curlSession);
-
-                if($data!=null){
-                    $media_url=$data->media_url;
-                    $short_url=$data->permalink;
-                    $caption=$data->caption;
-                    $type=$data->media_type;
-                    echo "<div class='slide-item'><a href='".$short_url."' class='listbox'>";
-
-                    echo "<div class='listimg'><img class='w-100' src='$media_url' alt=''>";
-                    echo "</div><div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'>$caption
-                        </h6><div class='BentonSansmedium fs-12 color-lightpink'>";
-
-                    echo "<span class='fas fa-heart mr-2'> 0</span>";
-                    echo "<span class='fas fa-comment'> 0</span></div></div></a></div>";
-                }
-                }
+                $media_url=$media->data[$index]->media_url;
+                $short_url=$media->data[$index]->permalink;
+                $caption=$media->data[$index]->caption;
                 ?>
+                <div class='slide-item'><a href='<?=$short_url?>' class='listbox'>
+
+                        <div class='listimg'><img class='w-100' src='<?=$media_url?>' alt=''>
+                        </div><div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'><?=$caption?>
+                            </h6><div class='BentonSansmedium fs-12 color-lightpink'>"
+
+                                <span class='fas fa-heart mr-2'> 0</span>
+                                <span class='fas fa-comment'> 0</span></div></div></a></div>
+                <?php
+
+            }
+            ?>
+
+
             </div>
         </div>
     </div>
@@ -230,9 +231,9 @@ $this->title = 'Devices For Kids';
                         <div class="col-md-6 form-group">
                             <?= Html::submitButton('Submit',['class'=>'submit bg-color-blue color-white BentonSansbold fs24']);?>
                         </div>
-
                     </div>
                 <?php $form=ActiveForm::end()?>
+
                 <?php
                 if(Yii::$app->session->hasFlash('success')){
                     echo Yii::$app->session->getFlash('success');
@@ -254,5 +255,12 @@ $this->title = 'Devices For Kids';
 <script src="js/bootstrap.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/custom.js"></script>
+<script src="js/sendData.js"></script>
+<script>
+    function clickBait(){
+        console.log(data);
+    }
+
+</script>
 </body>
 </html>
