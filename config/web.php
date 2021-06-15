@@ -15,7 +15,8 @@ $config = [
         'reCaptcha' => [
             'class' => 'himiklab\yii2\recaptcha\ReCaptchaConfig',
             'siteKeyV2' => '6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i',
-            'secretV2' => '6LdvMygbAAAAAHaOXCN0GmNoDI-DPrxBIf2yaMkZ'
+            'secretV2' => '6LdvMygbAAAAAHaOXCN0GmNoDI-DPrxBIf2yaMkZ',
+
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

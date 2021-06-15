@@ -170,7 +170,7 @@ $this->title = 'Devices For Kids';
                             ?>
                             <div class='listimg'>
                                 <video class='w-100' controls>
-                                    <source src='<?=$media_url?>'>
+                                    <source src='<?=$media_url?>' type="video/mp4">
                                 </video>
                             </div>
                             <?php
@@ -189,7 +189,7 @@ $this->title = 'Devices For Kids';
                         }
                         ?>
                         <div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'><?=$caption?>
-                            </h6><div class='BentonSansmedium fs-12 color-lightpink'>"
+                            </h6><div class='BentonSansmedium fs-12 color-lightpink'>
 
                                 <span class='fas fa-heart mr-2'> 0</span>
                                 <span class='fas fa-comment'> 0</span></div></div></a></div>
