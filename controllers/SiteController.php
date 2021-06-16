@@ -132,28 +132,25 @@ class SiteController extends Controller
         return $this->render('about');
     }*/
     public function actionIndex(){
-        $model = new NominationForm;
-        //$metaData=Instagram::fetchUserMetaData();
-        //$mediaData = Instagram::fetchMediaMetaData($metaData['media']['data'],$metaData['media_count']);
-        /*$value=new instagramuser();
-        $value->name=$metaData['name'];
-        $value->username=$metaData['username'];
-        $value->posts=$metaData['media_count'];
-        $value->followers=$metaData['followers_count'];
-        $value->biography=$metaData['biography'];
-        $value->profile_pic_url=$metaData['profile_picture_url'];
-        $value->insta_url="https://www.instagram.com/$value->username";
-        if($value->validate() && $value->save()){
-            echo "o yeah<br>";
-        }
-        else{
-            echo "no yeah";
-        }
-        print_r($value);
-        exit;*/
 
-        if($model->load(Yii::$app->request->post()) && $model->validate()){
-            Yii::$app->session->setFlash('success','Thank You! You have successfully submitted a Nomination');
+        $model=new NominationForm;
+        return $this->render('nominationForm',['model'=>$model]);
+    }
+    public function actionSubmit(){
+        $model = new NominationForm;
+        $model->name=$_REQUEST['name'];
+        $model->email=$_REQUEST['email'];
+        $model->school=$_REQUEST['school'];
+        $model->address=$_REQUEST['address'];
+        $model->connection=$_REQUEST['connection'];
+        $model->contact=$_REQUEST['contact'];
+        $model->position=$_REQUEST['position'];
+        $model->emailAddress=$_REQUEST['emailAddress'];
+        $model->otherInfo=$_REQUEST['otherInfo'];
+        $model->reCaptcha=$_REQUEST['reCaptcha'];
+
+        if($model->validate()){
+            /*Yii::$app->session->setFlash('success','Thank You! You have successfully submitted a Nomination');
             switch($model->connection){
                 case 0:
                     $model->connection="Parent";
@@ -170,15 +167,16 @@ class SiteController extends Controller
             $EmailBody=$this->render('email',['model'=>$model]);
             $objEmailInfo                          = new EmailInfo();
             $objEmailInfo->_FromName               = "Device For Kids";
-            $objEmailInfo->_FromEmailAddress       = $model->email;
+            $objEmailInfo->_FromEmailAddress       = "info@devicesforkids.co.uk";
             $objEmailInfo->_ToEmailAddress         = "hello@devicesforkids.co.uk";
-            $objEmailInfo->_EmailSubject           = "Nomination";
+            $objEmailInfo->_EmailSubject           = "Nomination ".$model->school;
             $objEmailInfo->_CCList                 = ["anum.shahzadi@dynamologic.com","shahjahan.mehmood.mirza@dynamologic.com"];
             $objEmailInfo->_EmailBody              = $EmailBody;
-            $response                              = SendEmail::sendMail($objEmailInfo);
+            $response                              = SendEmail::sendMail($objEmailInfo);*/
+            return 1;
         }
-        $model=new NominationForm;
-        return $this->render('nominationForm',['model'=>$model]);
+        else{
+            return 0;
+        }
     }
-
 }
