@@ -138,19 +138,7 @@ class SiteController extends Controller
     }
     public function actionSubmit(){
         $model = new NominationForm;
-        /*$model->name=$_REQUEST['name'];
-        $model->email=$_REQUEST['email'];
-        $model->school=$_REQUEST['school'];
-        $model->address=$_REQUEST['address'];
-        $model->connection=$_REQUEST['connection'];
-        $model->contact=$_REQUEST['contact'];
-        $model->position=$_REQUEST['position'];
-        $model->emailAddress=$_REQUEST['emailAddress'];
-        $model->otherInfo=$_REQUEST['otherInfo'];
-        $model->reCaptcha=$_REQUEST['reCaptcha'];*/
-
         if($model->load(Yii::$app->request->post()) && $model->validate()){
-            /*Yii::$app->session->setFlash('success','Thank You! You have successfully submitted a Nomination');
             switch($model->connection){
                 case 0:
                     $model->connection="Parent";
@@ -172,9 +160,9 @@ class SiteController extends Controller
             $objEmailInfo->_EmailSubject           = "Nomination ".$model->school;
             $objEmailInfo->_CCList                 = ["anum.shahzadi@dynamologic.com","shahjahan.mehmood.mirza@dynamologic.com"];
             $objEmailInfo->_EmailBody              = $EmailBody;
-            $response                              = SendEmail::sendMail($objEmailInfo);*/
+            $response                              = SendEmail::sendMail($objEmailInfo);
 
-            return 1;
+            return $response;
         }
         else{
             return 0;
