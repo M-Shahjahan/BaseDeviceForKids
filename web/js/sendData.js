@@ -32,7 +32,7 @@ $(document).ready(function () {
 
         }
         $.ajax({
-            url: '/web/?r=site/submit',
+            url: 'web/?r=site/submit',
             type:'POST',
             data: data,
             dataType:'json'
