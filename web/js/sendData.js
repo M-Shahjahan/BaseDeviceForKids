@@ -4,7 +4,6 @@ $(document).ready(function () {
 
         event.preventDefault();
         var form=$(this);
-        console.log('1\n2\n3')
         document.getElementById("nominate").disabled = true;
         var data=form.serializeArray();
         var values=["Name","Email","School","Address","Connection","Contact","Position","Email Address","Other Info",""];
@@ -20,7 +19,6 @@ $(document).ready(function () {
            data[10].value,
            data[11].value
        ];
-        console.log(finalData);
         for(var index=0;index<10;++index){
 
             if(finalData[index]==""){
@@ -34,13 +32,12 @@ $(document).ready(function () {
 
         }
         $.ajax({
-            url: 'localhost/basic/web/?r=site/submit',
+            url: '/web/?r=site/submit',
             type:'POST',
             data: data,
             dataType:'json'
             }
         ).done(function (response) {
-            console.log(response);
             if(response==1){
 
                 document.getElementById('flash_text').innerText="Thank You! You have successfully submitted a nomination";
@@ -57,7 +54,6 @@ $(document).ready(function () {
                 document.getElementById('nominationform-recaptcha').value="";
                 grecaptcha.reset();
             }
-            document.getElementById("nominate").disabled = false;
         })
     });
 })
