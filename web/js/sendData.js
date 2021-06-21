@@ -47,7 +47,7 @@ $(document).ready(function () {
             }
             else{
                 if(!finalData[index].includes("@") && (values[index]=="Email" || values[index]=="Email Address")){
-                    document.getElementsByClassName('help-block')[index].innerHTML=values[index]+" is not a valid email address.";
+                    document.getElementsByClassName('help-block')[index].innerHTML="Enter a valid email address.";
                 }
             }
 

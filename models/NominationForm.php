@@ -20,7 +20,7 @@ class NominationForm extends Model
     {
         return [
             [['name','email','school','address','contact','position','connection','emailAddress','otherInfo'],'required'],
-            [['email','emailAddress'],'email'],
+            [['email','emailAddress'],'email','message'=>"Enter a valid email address."],
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator2::className(),
                 'secret'=>'6LdvMygbAAAAAHaOXCN0GmNoDI-DPrxBIf2yaMkZ',
                 'uncheckedMessage' => 'Please confirm that you are not a bot.'],
