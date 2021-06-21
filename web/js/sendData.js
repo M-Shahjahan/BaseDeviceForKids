@@ -7,26 +7,51 @@ $(document).ready(function () {
         document.getElementById("nominate").disabled = true;
         var data=form.serializeArray();
         var values=["Name","Email","School","Address","Connection","Contact","Position","Email Address","Other Info",""];
-        let finalData = [
-           data[1].value,
-           data[2].value,
-           data[3].value,
-           data[4].value,
-           data[6].value,
-           data[7].value,
-           data[8].value,
-           data[9].value,
-           data[10].value,
-           data[11].value
-       ];
-        for(var index=0;index<10;++index){
+        console.log(data);
+        let finalData = [];
+        if(data.length==12){
+            finalData = [
+                data[1].value,
+                data[2].value,
+                data[3].value,
+                data[4].value,
+                data[5].value,
+                data[6].value,
+                data[7].value,
+                data[8].value,
+                data[9].value,
+                data[10].value
+            ];
+        }
+        else{
+            finalData = [
+                data[1].value,
+                data[2].value,
+                data[3].value,
+                data[4].value,
+                data[6].value,
+                data[7].value,
+                data[8].value,
+                data[9].value,
+                data[10].value,
+                data[11].value
+            ];
+        }
 
-            if(finalData[index]==""){
+        console.log(finalData);
+        for(var index=0;index<10;++index){
+            console.log(finalData[index]==="");
+            if(finalData[index]===""){
                 if(values[index]==""){
                     document.getElementsByClassName('help-block')[index].innerHTML="Please confirm you are not a bot.";
                 }
                 else{
                     document.getElementsByClassName('help-block')[index].innerHTML=values[index]+" cannot be blank.";
+                }
+            }
+            else{
+                if(!finalData[index].includes("@") && (values[index]=="Email" || values[index]=="Email Address")){
+                    document.getElementsByClassName('help-block')[index].innerHTML=values[index]+" is not a valid email address.";
                 }
             }
 
