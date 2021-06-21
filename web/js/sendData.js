@@ -7,7 +7,6 @@ $(document).ready(function () {
         document.getElementById("nominate").disabled = true;
         var data=form.serializeArray();
         var values=["Name","Email","School","Address","Connection","Contact","Position","Email Address","Other Info",""];
-        console.log(data);
         let finalData = [];
         if(data.length==12){
             finalData = [
@@ -37,10 +36,7 @@ $(document).ready(function () {
                 data[11].value
             ];
         }
-
-        console.log(finalData);
         for(var index=0;index<10;++index){
-            console.log(finalData[index]==="");
             if(finalData[index]===""){
                 if(values[index]==""){
                     document.getElementsByClassName('help-block')[index].innerHTML="Please confirm you are not a bot.";
