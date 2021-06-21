@@ -39,7 +39,7 @@ $(document).ready(function () {
         for(var index=0;index<10;++index){
             if(finalData[index]===""){
                 if(values[index]==""){
-                    document.getElementsByClassName('help-block')[index].innerHTML="Please confirm you are not a bot.";
+                    document.getElementsByClassName('help-block')[index].innerHTML="Please confirm that you are not a bot.";
                 }
                 else{
                     document.getElementsByClassName('help-block')[index].innerHTML=values[index]+" cannot be blank.";
@@ -69,7 +69,7 @@ $(document).ready(function () {
                 grecaptcha.reset();
             }
             else if(response==0){
-                document.getElementById('flash_text').innerText="Please fill the missing fields";
+                /*document.getElementById('flash_text').innerText="Please fill the missing fields";*/
                 document.getElementById('flash_text').style.color="white";
                 document.getElementById("nominate").disabled = false;
                 document.getElementById('nominationform-recaptcha').value="";
