@@ -63,22 +63,19 @@ $(document).ready(function () {
 
                 document.getElementById('flash_text').innerText="Thank You! You have successfully submitted a nomination";
                 document.getElementById('flash_text').style.color="#092864";
-                document.getElementById("nominate").disabled = false;
-                document.getElementById('nominationform-recaptcha').value="";
                 $("#nominationForm").trigger("reset");
-                grecaptcha.reset();
-                window.scrollTo(0,document.body.scrollHeight);
             }
             else if(response==0){
                 /*document.getElementById('flash_text').innerText="Please fill the missing fields";*/
                 document.getElementById('flash_text').style.color="white";
-                document.getElementById("nominate").disabled = false;
-                document.getElementById('nominationform-recaptcha').value="";
-                grecaptcha.reset();
-                window.scrollTo(0,document.body.scrollHeight);
+
             }
+            document.getElementById("nominate").disabled = false;
+            document.getElementById('nominationform-recaptcha').value="";
+            grecaptcha.reset();
+            window.scrollTo(0,document.body.scrollHeight);
         })
-        window.scrollTo(0,document.body.scrollHeight);
+
         return false;
     });
 })
