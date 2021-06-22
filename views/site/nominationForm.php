@@ -215,7 +215,7 @@ $this->title = 'Devices For Kids';
                     this form.</p>
             </div>
             <div class="col-md-8">
-                <?php $form=ActiveForm::begin(['id'=>'nominationForm','options' => ['class' => 'footer-form-wrap']])?>
+                <?php $form=ActiveForm::begin(['id'=>'nominationForm','options' => ['class' => 'footer-form-wrap','enableAjaxValidation' => false]])?>
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <?= $form->field($model,'name')->label('Your Name',['class'=>'color-white BentonSansbold']);?>
