@@ -66,9 +66,7 @@ $(document).ready(function () {
                 $("#nominationForm").trigger("reset");
             }
             else if(response==0){
-                /*document.getElementById('flash_text').innerText="Please fill the missing fields";*/
-                document.getElementById('flash_text').style.color="white";
-
+                document.getElementById('flash_text').innerText="";
             }
             document.getElementById("nominate").disabled = false;
             document.getElementById('nominationform-recaptcha').value="";

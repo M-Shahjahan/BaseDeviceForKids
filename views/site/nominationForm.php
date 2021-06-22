@@ -252,14 +252,13 @@ $this->title = 'Devices For Kids';
                                 ['siteKey'=>'6LdvMygbAAAAANaSoO1G6ROlx6SC4D-DSJNx616i',
                                 ]) ?>
                         </div>
+
+                <?php $form=ActiveForm::end()?>
                         <div class="col-md-6 form-group">
                             <br>
-                            <?= Html::submitButton('Submit',[
-                                'class'=>'submit bg-color-blue color-white BentonSansbold fs24','id'=>'nominate']);?>
+                            <button class="submit bg-color-blue color-white BentonSansbold fs24" id="nominate">Submit</button>
                         </div>
                     </div>
-                <?php $form=ActiveForm::end()?>
-
                     <h4  id="flash_text" style="color: #092864;font: 20px;font-weight: bold"></h4>
 
             </div>
