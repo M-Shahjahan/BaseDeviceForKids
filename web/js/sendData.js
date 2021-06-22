@@ -76,7 +76,7 @@ $(document).ready(function () {
                 grecaptcha.reset();
             }
         })
-        window.scrollTo(0, $(window).width()-100);
+        window.scrollTo(0, $(window).width()+300);
         return false;
     });
 })
