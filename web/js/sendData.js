@@ -67,6 +67,7 @@ $(document).ready(function () {
                 document.getElementById('nominationform-recaptcha').value="";
                 $("#nominationForm").trigger("reset");
                 grecaptcha.reset();
+                window.scrollTo(0,document.body.scrollHeight);
             }
             else if(response==0){
                 /*document.getElementById('flash_text').innerText="Please fill the missing fields";*/
@@ -74,9 +75,10 @@ $(document).ready(function () {
                 document.getElementById("nominate").disabled = false;
                 document.getElementById('nominationform-recaptcha').value="";
                 grecaptcha.reset();
+                window.scrollTo(0,document.body.scrollHeight);
             }
         })
-        window.scrollTo(0, $(window).width()+300);
+        window.scrollTo(0,document.body.scrollHeight);
         return false;
     });
 })
