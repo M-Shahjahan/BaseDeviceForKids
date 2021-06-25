@@ -9,7 +9,7 @@ class Instagram
     
     
     public static function fetchUserMetaData(){
-        $accessToken ="EAAHAZBeRuF6YBAAXzYBBV7yasitn0e56fZCihAjHul23WF8sXqWS6ZBBto4z7nZBrZBYsnaN7Dhx7NTnWr0FjWQ2rlrJ5xAvZAf1CvfZCYogEjgxajxXd2ODxJHEus46qznoJJZB435A5XcwANjUxcBPlVjB3R1tLfTg54RZB6PW4jgLaMH4Ox4Ym";
+        $accessToken ="EAAHAZBeRuF6YBACwqC1LJRuDet5oqNoK3fssZBQO3lK5MVo8qZBB1edH2894cW3g93Amna6egx3oEycWqxSAUYAyZCxUEUorO1rMUpsGfa6dgpNJ3tlWeCCIFfZCCZB6Vwrcsb831ZCHRBva03yAmr01l6GF3ZB0HfMJZAJWP4i5AAmoMnMH10mxfkdR4lyGm6V8ZD";
         $ig_id = "17841447771512559";
         $api_version="v10.0";
         $fields="username,media_count,followers_count,profile_picture_url,media,biography,name";
@@ -25,7 +25,7 @@ class Instagram
     public static function fetchMediaMetaData($media,$size)
     {
         $mediaFields="media_type,media_url,comments_count,like_count,permalink,caption";
-        $accessToken ="EAAHAZBeRuF6YBAAXzYBBV7yasitn0e56fZCihAjHul23WF8sXqWS6ZBBto4z7nZBrZBYsnaN7Dhx7NTnWr0FjWQ2rlrJ5xAvZAf1CvfZCYogEjgxajxXd2ODxJHEus46qznoJJZB435A5XcwANjUxcBPlVjB3R1tLfTg54RZB6PW4jgLaMH4Ox4Ym";
+            $accessToken ="EAAHAZBeRuF6YBACwqC1LJRuDet5oqNoK3fssZBQO3lK5MVo8qZBB1edH2894cW3g93Amna6egx3oEycWqxSAUYAyZCxUEUorO1rMUpsGfa6dgpNJ3tlWeCCIFfZCCZB6Vwrcsb831ZCHRBva03yAmr01l6GF3ZB0HfMJZAJWP4i5AAmoMnMH10mxfkdR4lyGm6V8ZD";
         $api_version="v10.0";
         $mainUrl = "https://graph.facebook.com";
         $dataReturned=[];

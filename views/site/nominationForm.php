@@ -104,41 +104,18 @@ $this->title = 'Devices For Kids';
 </section>
 <section class="listsection">
     <div class="container">
-        <?php
-        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
-        $ig_id = "17841447771512559";
-        $fields="id,username,media_count";
-        $mainUrl = "https://graph.instagram.com";
-        $url="$mainUrl/$ig_id?fields=$fields&access_token=$accessToken";
-        $curlSession = curl_init();
-        curl_setopt($curlSession, CURLOPT_URL, $url);
-        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
-        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-
-        $data = json_decode(curl_exec($curlSession));
-        curl_close($curlSession);
-        //$response = @file_get_contents( $url);
-
-        if($data!=null){
-            $username=$data->username;
-            $posts = $data->media_count;
-            $insta_link="https://www.instagram.com/$username";
-        }
-
-
-        ?>
-        <a href="<?=$insta_link?>" class="display-inline">
+        <a href="<?=$instaUser->insta_url?>" class="display-inline">
             <div class="d-flex align-items-center">
                 <div class="userimg mr-3">
-                    <img src="img/profile_pic.jpg" alt="">
+                    <img src="<?=$instaUser->profile_pic_url?>" alt="">
                 </div>
                 <div class="color-pink BentonSansmedium ">
                     <div class="d-flex">
-                        <h6 class="mr-2"><?=$username?></h6>
-                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$posts?></span>
-                        <span class="fs-12"><i class="fal fa-user"></i> 12</span>
+                        <h6 class="mr-2"><?=$instaUser->name?></h6>
+                        <span class="mr-2 fs-12"><i class="fal fa-camera"></i> <?=$instaUser->posts?></span>
+                        <span class="fs-12"><i class="fal fa-user"></i> <?=$instaUser->followers?></span>
                     </div>
-                    <p class="m-0 fs-12 BentonSansmedium">Power is not will, it is a phenomenon to make things physically happen.</p>
+                    <p class="m-0 fs-12 BentonSansmedium"><?=$instaUser->biography?></p>
                 </div>
             </div>
 
@@ -147,22 +124,13 @@ $this->title = 'Devices For Kids';
         <div class="slick-wrapper devices_listing">
             <div id="slick1">
             <?php
-            $fields="media_type,media_url,permalink,caption";
-            $url="$mainUrl/".$ig_id."/media?fields=$fields&access_token=$accessToken";
-
-            $curlSession = curl_init();
-            curl_setopt($curlSession, CURLOPT_URL, $url);
-            curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
-            curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
-
-            $media = json_decode(curl_exec($curlSession));
-            curl_close($curlSession);
-            //print_r($media);
-            for($index=0;$index<$posts;++$index){
-                $media_url=$media->data[$index]->media_url;
-                $short_url=$media->data[$index]->permalink;
-                $caption=$media->data[$index]->caption;
-                $media_type=$media->data[$index]->media_type
+            for($index=0;$index<$instaUser->posts;++$index){
+                $media_url=$instaPosts[$index]->post_url;
+                $short_url=$instaPosts[$index]->short_url;
+                $caption=$instaPosts[$index]->caption;
+                $media_type=$instaPosts[$index]->media_type;
+                $likes=$instaPosts[$index]->likes;
+                $comments=$instaPosts[$index]->comments;
                 ?>
                 <div class='slide-item'><a href='<?=$short_url?>' class='listbox'>
                         <?php
@@ -191,8 +159,8 @@ $this->title = 'Devices For Kids';
                         <div class='text-center'><h6 class='fs-16 color-black BentonSansmedium my-3 fs-md-14 fs-sm-12'><?=$caption?>
                             </h6><div class='BentonSansmedium fs-12 color-lightpink'>
 
-                                <span class='fas fa-heart mr-2'> 0</span>
-                                <span class='fas fa-comment'> 0</span></div></div></a></div>
+                                <span class='fas fa-heart mr-2'> <?=$likes?></span>
+                                <span class='fas fa-comment'> <?=$comments?></span></div></div></a></div>
                 <?php
 
             }
@@ -200,7 +168,7 @@ $this->title = 'Devices For Kids';
 
 
             </div>
-        </div>
+        </div
     </div>
 </section>
 <footer>
