@@ -8,14 +8,11 @@ use app\models\instagrampost;
 use app\models\InstagramUser;
 use app\models\NominationForm;
 use app\models\SendEmail;
-use app\models\UserMetaData;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
