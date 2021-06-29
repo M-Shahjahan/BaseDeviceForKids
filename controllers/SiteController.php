@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\models\emailInfo;
 use app\models\Instagram;
 use app\models\instagrampost;
-use app\models\InstagramUser;
+use app\models\instagramuser;
 use app\models\NominationForm;
 use app\models\SendEmail;
 use Yii;
