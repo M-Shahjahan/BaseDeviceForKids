@@ -14,6 +14,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 
+
 class SiteController extends Controller
 {
     /**
@@ -169,8 +170,9 @@ class SiteController extends Controller
         }
     }
     public function actionInstagram(){
-        $metaData=Instagram::fetchUserMetaData();
-        $mediaData = Instagram::fetchMediaMetaData($metaData['media']['data'],$metaData['media_count']);
+        $accessToken = $_REQUEST['accessToken'];
+        $metaData=Instagram::fetchUserMetaData($accessToken);
+        $mediaData = Instagram::fetchMediaMetaData($metaData['media']['data'],$metaData['media_count'],$accessToken);
         $value = instagramuser::find()->where(['id' => 1])->one();
         $value->name=$metaData['name'];
         $value->username=$metaData['username'];
@@ -179,11 +181,9 @@ class SiteController extends Controller
         $value->biography=$metaData['biography'];
         $value->profile_pic_url=$metaData['profile_picture_url'];
         $value->insta_url="https://www.instagram.com/$value->username";
+        $count=0;
         if($value->validate() && $value->save()){
-            echo "Record Update Successfull<br>";
-        }
-        else{
-            echo "Record Update Unsuccessful<br>";
+           $count+=1;
         }
         instagrampost::deleteAll();
         for($i=0;$i<$metaData['media_count'];++$i){
@@ -197,11 +197,17 @@ class SiteController extends Controller
             $instaPost->likes=$mediaData[$i]['like_count'];
             $instaPost->comments=$mediaData[$i]['comments_count'];
             if($instaPost->validate() && $instaPost->save()){
-                echo "Post ". $counter ." Insertion Successful<br>";
-            }
-            else{
-                echo "Post ". $counter ." Insertion Unsuccessful<br>";
+                $count+=1;
             }
         }
+        if($count==$metaData['media_count']+1){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+    }
+    public function actionFacebook(){
+        return $this->render('facebook');
     }
 }
