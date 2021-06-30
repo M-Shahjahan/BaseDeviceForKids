@@ -1,4 +1,7 @@
 <html>
+<head>
+    <title>User Meta Data Update</title>
+</head>
 <body>
     <p id="result-box">Waiting....</p>
 </body>
