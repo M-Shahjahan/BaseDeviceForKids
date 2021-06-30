@@ -1,12 +1,8 @@
-<?php
-/*$fb = new Facebook\Facebook([
-    'app_id' => '493654488520614',
-    'app_secret' => 'c150c576ee1ef48ccef5097db3a0ff38',
-    'default_graph_version' => 'v10.0',
-]);
-$response = $fb->get('/me');
-print_r($response);
-*/?>
+<html>
+<body>
+    <p id="result-box">Waiting....</p>
+</body>
+</html>
 <script>
     window.fbAsyncInit = function() {
         FB.init({
@@ -45,10 +41,10 @@ print_r($response);
             }
         ).done(function (response) {
             if(response==0){
-                alert("All records are successfully updated");
+                document.getElementById('result-box').innerText="All records are successfully updated";
             }
             else if(response==1){
-                alert('Some records are not successfully updated');
+                document.getElementById('result-box').innerText="Some records are not successfully updated";
             }
         })
     };
