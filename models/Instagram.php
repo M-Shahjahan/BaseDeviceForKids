@@ -43,4 +43,31 @@ class Instagram
         }
         return $dataReturned;
     }
+    public static function fetchBasicUserMetaData($accessToken){
+        $ig_id = "17841447771512559";
+        $fields="id,username,media_count";
+        $mainUrl = "https://graph.instagram.com";
+        $url="$mainUrl/$ig_id?fields=$fields&access_token=$accessToken";
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, $url);
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+        $data = json_decode(curl_exec($curlSession));
+        curl_close($curlSession);
+        return $data;
+    }
+    public static function fetchBasicMediaMetaData($accessToken){
+        $ig_id = "17841447771512559";
+        $fields="media_type,media_url,permalink,caption";
+        $mainUrl = "https://graph.instagram.com";
+        $url="$mainUrl/".$ig_id."/media?fields=$fields&access_token=$accessToken";
+        $curlSession = curl_init();
+        curl_setopt($curlSession, CURLOPT_URL, $url);
+        curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+        curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+        $media = json_decode(curl_exec($curlSession));
+        curl_close($curlSession);
+        return $media;
+    }
 }

@@ -210,4 +210,36 @@ class SiteController extends Controller
     public function actionFacebook(){
         return $this->render('facebook');
     }
+    public function actionInsta(){
+        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
+        $metaData=Instagram::fetchBasicUserMetaData($accessToken);
+        $mediaData=Instagram::fetchBasicMediaMetaData($accessToken);
+        $value = instagramuser::find()->where(['id' => 1])->one();
+        $value->username=$metaData->username;
+        $value->posts=$metaData->media_count;
+        $value->insta_url="https://www.instagram.com/$value->username";
+        if($value->validate() && $value->save()){
+            echo "Record Updated<br>";
+        }
+        $data= instagrampost::find()->max('id');
+        if($data==0){
+            echo "Error! The main Facebook Crone needs to be executed";
+        }
+        for($index=0;$index<$value->posts;++$index){
+            $i=$index+1;
+            $instaPost= instagrampost::find()->where(['id'=>$data-$index])->one();
+            $instaPost->post_url=$mediaData->data[$data-$i]->media_url;
+            $instaPost->short_url=$mediaData->data[$data-$i]->permalink;
+            $instaPost->caption=$mediaData->data[$data-$i]->caption;
+            $instaPost->media_type=$mediaData->data[$data-$i]->media_type;
+            if($instaPost->validate() && $instaPost->save()){
+                echo "Post No ".$i." Updated<br>";
+            }
+            if($data-$i==0){
+                echo "Updation Completed";
+                break;
+            }
+        }
+
+    }
 }
