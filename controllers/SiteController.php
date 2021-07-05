@@ -181,6 +181,7 @@ class SiteController extends Controller
         $value->biography=$metaData['biography'];
         $value->profile_pic_url=$metaData['profile_picture_url'];
         $value->insta_url="https://www.instagram.com/$value->username";
+        $value->last_full_update= date('Y-m-d H:i:s');
         $count=0;
         if($value->validate() && $value->save()){
            $count+=1;
@@ -196,6 +197,7 @@ class SiteController extends Controller
             $instaPost->media_type=$mediaData[$i]['media_type'];
             $instaPost->likes=$mediaData[$i]['like_count'];
             $instaPost->comments=$mediaData[$i]['comments_count'];
+            $instaPost->last_full_update= date('Y-m-d H:i:s');
             if($instaPost->validate() && $instaPost->save()){
                 $count+=1;
             }
@@ -218,28 +220,45 @@ class SiteController extends Controller
         $value->username=$metaData->username;
         $value->posts=$metaData->media_count;
         $value->insta_url="https://www.instagram.com/$value->username";
+        $value->last_partial_update= date('Y-m-d H:i:s');
         if($value->validate() && $value->save()){
             echo "Record Updated<br>";
         }
         $data= instagrampost::find()->max('id');
         if($data==0){
-            echo "Error! The main Facebook Crone needs to be executed";
-        }
-        for($index=0;$index<$value->posts;++$index){
-            $i=$index+1;
-            $instaPost= instagrampost::find()->where(['id'=>$data-$index])->one();
-            $instaPost->post_url=$mediaData->data[$data-$i]->media_url;
-            $instaPost->short_url=$mediaData->data[$data-$i]->permalink;
-            $instaPost->caption=$mediaData->data[$data-$i]->caption;
-            $instaPost->media_type=$mediaData->data[$data-$i]->media_type;
-            if($instaPost->validate() && $instaPost->save()){
-                echo "Post No ".$i." Updated<br>";
+            $EmailBody=$this->render('instaError');
+            $objEmailInfo                          = new EmailInfo();
+            $objEmailInfo->_FromName               = "Device For Kids";
+            $objEmailInfo->_FromEmailAddress       = "info@expressestateagency.co.uk";
+            $objEmailInfo->_ToEmailAddress         = "shahjahan.mehmood.mirza@dynamologic.com";
+            $objEmailInfo->_EmailSubject           = "Devices For Kids Basic API Error";
+            /*$objEmailInfo->_CCList                 = ["shahjahan.mehmood.mirza@dynamologic.com"];*/
+            $objEmailInfo->_EmailBody              = $EmailBody;
+            $response                              = SendEmail::sendMail($objEmailInfo);
+            if($response){
+                echo "An Error Occurred Kindly Refer To The Email That Is Sent.";
             }
-            if($data-$i==0){
-                echo "Updation Completed";
-                break;
+
+        }
+        else{
+            for($index=0;$index<$value->posts;++$index){
+                $i=$index+1;
+                $instaPost= instagrampost::find()->where(['id'=>$data-$index])->one();
+                $instaPost->post_url=$mediaData->data[$data-$i]->media_url;
+                $instaPost->short_url=$mediaData->data[$data-$i]->permalink;
+                $instaPost->caption=$mediaData->data[$data-$i]->caption;
+                $instaPost->media_type=$mediaData->data[$data-$i]->media_type;
+                $instaPost->last_partial_update= date('Y-m-d H:i:s');
+                if($instaPost->validate() && $instaPost->save()){
+                    echo "Post No ".$i." Updated<br>";
+                }
+                if($data-$i==0){
+                    echo "Updating Completed";
+                    break;
+                }
             }
         }
+
         exit;
     }
 }
