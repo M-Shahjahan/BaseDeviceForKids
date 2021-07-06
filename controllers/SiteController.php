@@ -186,6 +186,8 @@ class SiteController extends Controller
         if($value->validate() && $value->save()){
            $count+=1;
         }
+        $insta= instagrampost::find()->where(['id'=>1])->one();
+        $lastPartialUpdate=$insta->last_partial_update;
         instagrampost::deleteAll();
         for($i=0;$i<$metaData['media_count'];++$i){
             $counter=$i+1;
@@ -197,6 +199,7 @@ class SiteController extends Controller
             $instaPost->media_type=$mediaData[$i]['media_type'];
             $instaPost->likes=$mediaData[$i]['like_count'];
             $instaPost->comments=$mediaData[$i]['comments_count'];
+            $instaPost->last_partial_update=$lastPartialUpdate;
             $instaPost->last_full_update= date('Y-m-d H:i:s');
             if($instaPost->validate() && $instaPost->save()){
                 $count+=1;
