@@ -216,7 +216,7 @@ class SiteController extends Controller
         return $this->render('facebook');
     }
     public function actionInsta(){
-        $accessToken = "IGQVJXUmdkWnAyMlNpLS1ZAbzY0VHpBMW1HU2s0VUtlVkFYYVZAfbHlraUlqSHVqcV9fRndZAX3Vob2tFamFrT0ludFI4di1xS183WVFKeVc5RDJ6MDItcHdEWGQ0WnhxUHpUVmM5Uk1RZAkV2VzhxQWduQgZDZD";
+        $accessToken = "IGQVJYM0xGdmJ2WGxrX1dnNVNLbmIxQVhBWlFsSUkxRVlqbkdZAeDIyZA3N3UGVBLVdXX3B2WXV2VFBZAYUt5bEJPREZATcmNib1ppYmRKRFRNYU54WFJLQmIzZAUlQcmpMRXgzaHFHTlUyTTZAPbXVjNTMyWQZDZD";
         $metaData=Instagram::fetchBasicUserMetaData($accessToken);
         $mediaData=Instagram::fetchBasicMediaMetaData($accessToken);
         $value = instagramuser::find()->where(['id' => 1])->one();
